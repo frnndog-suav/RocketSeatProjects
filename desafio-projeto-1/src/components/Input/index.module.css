@@ -1,0 +1,13 @@
+.input {
+    background: var(--gray-500);
+    border: 1px solid var(--gray-700);
+    border-radius: 8px;
+    padding: 1rem;
+    color: var(--gray-100);
+    width: 100%;
+}
+
+.input:focus {
+    outline: transparent;
+    box-shadow: 0 0 0 2px var(--purpleDark);
+}
