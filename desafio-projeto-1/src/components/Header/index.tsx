@@ -5,7 +5,7 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.logoContainer}>
-        <img className={styles.logo} src={RocketLogo} />
+        <img className={styles.logo} src={RocketLogo} alt={'Foguete'} />
         <div>
           <span className={styles.colorBlue}>to</span>
           <span className={styles.colorPurpleDark}>do</span>
