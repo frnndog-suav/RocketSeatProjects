@@ -12,6 +12,22 @@ function App() {
           <Input />
           <CreateButton />
         </div>
+        <div className={styles.tasksContainer}>
+          <div className={styles.tasksContainerHeader}>
+            <div className={styles.createdTasksCounter}>
+              <span>Tarefas criadas</span>
+              <div className={styles.taskCounter}>
+                10
+              </div>
+            </div>
+            <div className={styles.finishedTasksCounter}>
+              <span>Concluídas</span>
+              <div className={styles.taskCounter}>
+                10
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
     </>
   );
