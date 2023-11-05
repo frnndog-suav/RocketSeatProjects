@@ -1,3 +1,12 @@
+.newTaskContainer {
+    width: 40rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: calc(0px - 1.5rem - 2px)
+}
+
 .wrapper {
-  
+    display: flex;
+    justify-content: space-around;
 }

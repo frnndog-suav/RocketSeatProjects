@@ -5,7 +5,7 @@ export const CreateButton = () => {
   return (
     <button className={styles.button}>
       {"Criar"}
-      <PlusCircle size={24}  />
+      <PlusCircle width={"1.5rem"} height={"1.5rem"} />
     </button>
   );
 };
