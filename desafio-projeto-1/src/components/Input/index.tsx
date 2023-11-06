@@ -1,11 +1,14 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FC, InvalidEvent } from "react";
 import styles from "./index.module.css";
 
-export const Input = () => {
-  const [text, setText] = useState("");
+interface InputProps {
+  text: string;
+  handleInputTextChange(event: ChangeEvent<HTMLInputElement>): void;
+}
 
-  function handleInputTextChange(event: ChangeEvent<HTMLInputElement>) {
-    setText(event.target.value);
+export const Input: FC<InputProps> = ({ handleInputTextChange, text }) => {
+  function handleTaskInvalid(event: InvalidEvent<HTMLInputElement>) {
+    event.target.setCustomValidity("Esse campo é obrigatório.");
   }
 
   return (
@@ -14,6 +17,8 @@ export const Input = () => {
       placeholder="Adicione uma nova tarefa"
       value={text}
       onChange={handleInputTextChange}
+      required
+      onInvalid={handleTaskInvalid}
     />
   );
 };

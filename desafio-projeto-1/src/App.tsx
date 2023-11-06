@@ -1,19 +1,39 @@
+import { ChangeEvent, FormEvent, useState } from "react";
 import styles from "./App.module.css";
 import ClipBoardImg from "./assets/clipboard.svg";
 import { CreateButton } from "./components/CreateButton";
 import { Header } from "./components/Header";
 import { Input } from "./components/Input";
 import { Task } from "./components/Task";
+import { TaskObj } from "./types";
 
-function App() {
+function App() {  
+  const [newTask, setNewTask] = useState<TaskObj>({
+    id: 1,
+    isChecked: false,
+    text: "",
+  });
+
+  function handleInputTextChange(event: ChangeEvent<HTMLInputElement>) {
+    event.target.setCustomValidity("");
+    setNewTask({ ...newTask, text: event.target.value });
+  }
+
+  function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+  }
+
   return (
     <>
       <Header />
       <main className={styles.wrapper}>
-        <div className={styles.newTaskContainer}>
-          <Input />
+        <form className={styles.newTaskContainer} onSubmit={handleSubmit}>
+          <Input
+            handleInputTextChange={handleInputTextChange}
+            text={newTask.text}
+          />
           <CreateButton />
-        </div>
+        </form>
 
         <div className={styles.tasksContainer}>
           <div className={styles.tasksContainerHeader}>
