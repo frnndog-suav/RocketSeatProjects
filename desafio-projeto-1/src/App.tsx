@@ -38,8 +38,9 @@ function App() {
           </div> */}
 
           <div className={styles.taskList}>
+            <Task text="Integer urna interdum massa libero auctor neque turpis turpis semper. Vivamus ornare metus quis quam sagittis finibus." />
             <Task text="Integer urna interdum massa libero auctor neque turpis turpis semper." />
-            <Task text="Integer urna interdum massa libero auctor neque turpis turpis semper." />
+            <Task text="Integer urna interdum massa libero auctor neque turpis turpis semper. Nulla aliquet dolor auctor est volutpat, eget molestie dui pharetra. Praesent eget sapien mollis, hendrerit sem non, aliquam risus." />
           </div>
         </div>
       </main>
