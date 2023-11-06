@@ -3,6 +3,7 @@ import { Header } from "./components/Header";
 import { Input } from "./components/Input";
 import styles from "./App.module.css";
 import ClipBoardImg from "./assets/clipboard.svg";
+import { Checkbox } from "./components/Checkbox";
 
 function App() {
   return (
@@ -33,6 +34,8 @@ function App() {
               <span>{"Crie tarefas e organize seus itens a fazer"}</span>
             </div>
           </div>
+
+          <Checkbox />
         </div>
       </main>
     </>
