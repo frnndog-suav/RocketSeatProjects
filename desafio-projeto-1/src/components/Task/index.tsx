@@ -4,12 +4,18 @@ import { DeleteButton } from "../DeleteButton";
 import styles from "./index.module.css";
 
 interface TaskProps {
-  id: number;
+  id: string;
   text: string;
-  updateTasksList(id: number, isChecked: boolean): void;
+  updateTasksList(id: string, isChecked: boolean): void;
+  removeTask(id: string): void;
 }
 
-export const Task: FC<TaskProps> = ({ id, text, updateTasksList }) => {
+export const Task: FC<TaskProps> = ({
+  id,
+  text,
+  updateTasksList,
+  removeTask,
+}) => {
   const [isChecked, setIsChecked] = useState(false);
 
   function switchCheckboxState() {
@@ -24,7 +30,7 @@ export const Task: FC<TaskProps> = ({ id, text, updateTasksList }) => {
         <Checkbox handleChecked={switchCheckboxState} isChecked={isChecked} />
         <span>{text}</span>
       </div>
-      <DeleteButton />
+      <DeleteButton handleOnClick={removeTask} id={id} />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 export interface TaskObj {
-    id: number
+    id: string
     text: string
     isChecked: boolean
 }

@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import styles from "./App.module.css";
 import ClipBoardImg from "./assets/clipboard.svg";
 import { CreateButton } from "./components/CreateButton";
@@ -21,11 +22,12 @@ function App() {
 
     setTasks((taskList) => [
       ...taskList,
-      { id: taskList.length + 1, isChecked: false, text: newTask },
+      { id: uuidv4(), isChecked: false, text: newTask },
     ]);
+    setNewTask("");
   }
 
-  function updateTasksList(id: number, isChecked: boolean) {
+  function updateTasksList(id: string, isChecked: boolean) {
     const updatedList = tasks.map((task) => {
       if (task.id === id) {
         return { ...task, isChecked };
@@ -41,6 +43,10 @@ function App() {
     return finishedTasks === 0 ? 0 : `${finishedTasks} de ${tasks.length}`;
   }
 
+  function removeTask(id: string) {
+    setTasks((recentTasks) => recentTasks.filter((tasks) => tasks.id !== id));
+  }
+
   return (
     <>
       <Header />
@@ -49,7 +55,6 @@ function App() {
           <Input handleInputTextChange={handleInputTextChange} text={newTask} />
           <CreateButton />
         </form>
-
         <div className={styles.tasksContainer}>
           <div className={styles.tasksContainerHeader}>
             <div className={styles.createdTasksCounter}>
@@ -79,6 +84,7 @@ function App() {
                   id={task.id}
                   text={task.text}
                   updateTasksList={updateTasksList}
+                  removeTask={removeTask}
                 />
               ))}
             </div>
