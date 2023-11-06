@@ -1,5 +1,5 @@
-import styles from './index.module.css'
 import ClipBoardImg from "../../assets/clipboard.svg";
+import styles from "./index.module.css";
 
 export const EmptyTasksListContainer = () => {
   return (

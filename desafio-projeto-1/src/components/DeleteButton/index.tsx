@@ -6,10 +6,10 @@ interface DeleteButtonProps {
   handleOnClick(id: string): void;
 }
 
-export const DeleteButton = ({ id, handleOnClick }: DeleteButtonProps) => {
+export function DeleteButton({ id, handleOnClick }: DeleteButtonProps) {
   return (
     <button className={styles.button} onClick={() => handleOnClick(id)}>
       <Trash className={styles.trashIcon} />
     </button>
   );
-};
+}

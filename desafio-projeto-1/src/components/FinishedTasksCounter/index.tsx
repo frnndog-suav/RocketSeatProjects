@@ -1,14 +1,11 @@
-import { FC } from "react";
 import { TaskObj } from "../../types";
-import styles from './index.module.css'
+import styles from "./index.module.css";
 
 interface FinishedTasksCounterProps {
   tasks: TaskObj[];
 }
 
-export const FinishedTasksCounter: FC<FinishedTasksCounterProps> = ({
-  tasks,
-}) => {
+export function FinishedTasksCounter({ tasks }: FinishedTasksCounterProps) {
   const finishedTasks = tasks.filter((task) => task.isChecked).length;
 
   const finishedTasksValue =
@@ -20,4 +17,4 @@ export const FinishedTasksCounter: FC<FinishedTasksCounterProps> = ({
       <div className={styles.taskCounter}>{finishedTasksValue}</div>
     </div>
   );
-};
+}

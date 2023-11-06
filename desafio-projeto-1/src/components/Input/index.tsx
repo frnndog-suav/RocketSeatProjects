@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, InvalidEvent } from "react";
+import { ChangeEvent, InvalidEvent } from "react";
 import styles from "./index.module.css";
 
 interface InputProps {
@@ -6,7 +6,7 @@ interface InputProps {
   handleInputTextChange(event: ChangeEvent<HTMLInputElement>): void;
 }
 
-export const Input: FC<InputProps> = ({ handleInputTextChange, text }) => {
+export function Input({ handleInputTextChange, text }: InputProps) {
   function handleTaskInvalid(event: InvalidEvent<HTMLInputElement>) {
     event.target.setCustomValidity("Esse campo é obrigatório.");
   }
@@ -21,4 +21,4 @@ export const Input: FC<InputProps> = ({ handleInputTextChange, text }) => {
       onInvalid={handleTaskInvalid}
     />
   );
-};
+}
