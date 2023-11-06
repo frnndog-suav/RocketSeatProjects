@@ -27,7 +27,7 @@ function App() {
             </div>
           </div>
 
-          <div className={styles.taskContainerBody}>
+          {/* <div className={styles.taskContainerBody}>
             <img src={ClipBoardImg} alt="Prancheta" />
             <div>
               <span className={styles.boldText}>
@@ -35,9 +35,12 @@ function App() {
               </span>
               <span>{"Crie tarefas e organize seus itens a fazer"}</span>
             </div>
-          </div>
+          </div> */}
 
-          <Task text="Integer urna interdum massa libero auctor neque turpis turpis semper." />
+          <div className={styles.taskList}>
+            <Task text="Integer urna interdum massa libero auctor neque turpis turpis semper." />
+            <Task text="Integer urna interdum massa libero auctor neque turpis turpis semper." />
+          </div>
         </div>
       </main>
     </>
