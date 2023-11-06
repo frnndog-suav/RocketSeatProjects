@@ -1,17 +1,21 @@
 import { FC, useState } from "react";
 import { Checkbox } from "../Checkbox";
-import styles from "./index.module.css";
 import { DeleteButton } from "../DeleteButton";
+import styles from "./index.module.css";
 
 interface TaskProps {
+  id: number;
   text: string;
+  updateTasksList(id: number, isChecked: boolean): void;
 }
 
-export const Task: FC<TaskProps> = ({ text }) => {
+export const Task: FC<TaskProps> = ({ id, text, updateTasksList }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   function switchCheckboxState() {
-    setIsChecked((recentValue) => !recentValue);
+    const newValue = !isChecked;
+    setIsChecked(newValue);
+    updateTasksList(id, newValue);
   }
 
   return (
