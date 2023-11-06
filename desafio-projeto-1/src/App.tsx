@@ -1,9 +1,9 @@
+import styles from "./App.module.css";
+import ClipBoardImg from "./assets/clipboard.svg";
 import { CreateButton } from "./components/CreateButton";
 import { Header } from "./components/Header";
 import { Input } from "./components/Input";
-import styles from "./App.module.css";
-import ClipBoardImg from "./assets/clipboard.svg";
-import { Checkbox } from "./components/Checkbox";
+import { Task } from "./components/Task";
 
 function App() {
   return (
@@ -30,12 +30,14 @@ function App() {
           <div className={styles.taskContainerBody}>
             <img src={ClipBoardImg} alt="Prancheta" />
             <div>
-              <span className={styles.boldText}>{"Você ainda não tem tarefas cadastradas"}</span>
+              <span className={styles.boldText}>
+                {"Você ainda não tem tarefas cadastradas"}
+              </span>
               <span>{"Crie tarefas e organize seus itens a fazer"}</span>
             </div>
           </div>
 
-          <Checkbox />
+          <Task text="Integer urna interdum massa libero auctor neque turpis turpis semper." />
         </div>
       </main>
     </>

@@ -1,9 +1,15 @@
+import { FC } from "react";
 import styles from "./index.module.css";
 
-export const Checkbox = () => {
+interface CheckboxProps {
+  isChecked: boolean;
+  handleChecked(): void;
+}
+
+export const Checkbox: FC<CheckboxProps> = ({ handleChecked, isChecked }) => {
   return (
-    <label className={styles.container}>      
-      <input type="checkbox" />
+    <label className={styles.container}>
+      <input type="checkbox" checked={isChecked} onChange={handleChecked} />
       <span className={styles.checkmark} />
     </label>
   );
