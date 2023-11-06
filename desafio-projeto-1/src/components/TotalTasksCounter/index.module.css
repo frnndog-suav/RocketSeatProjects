@@ -1,0 +1,19 @@
+.createdTasksCounter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.createdTasksCounter span {
+  color: var(--blue);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.taskCounter {
+  border-radius: 999px;
+  background: var(--gray-400);
+  color: var(--gray-200);
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+}

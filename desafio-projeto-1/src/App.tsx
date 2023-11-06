@@ -7,10 +7,16 @@ import { Header } from "./components/Header";
 import { Input } from "./components/Input";
 import { Task } from "./components/Task";
 import { TaskObj } from "./types";
+import { TotalTasksCounter } from "./components/TotalTasksCounter";
 
 function App() {
   const [tasks, setTasks] = useState<TaskObj[]>([]);
   const [newTask, setNewTask] = useState<string>("");
+
+  const finishedTasks = tasks.filter((task) => task.isChecked).length;
+
+  const finishedTasksValue =
+    finishedTasks === 0 ? 0 : `${finishedTasks} de ${tasks.length}`;
 
   function handleInputTextChange(event: ChangeEvent<HTMLInputElement>) {
     event.target.setCustomValidity("");
@@ -38,11 +44,6 @@ function App() {
     setTasks(updatedList);
   }
 
-  function getFinishedTasks() {
-    const finishedTasks = tasks.filter((task) => task.isChecked).length;
-    return finishedTasks === 0 ? 0 : `${finishedTasks} de ${tasks.length}`;
-  }
-
   function removeTask(id: string) {
     setTasks((recentTasks) => recentTasks.filter((tasks) => tasks.id !== id));
   }
@@ -57,13 +58,10 @@ function App() {
         </form>
         <div className={styles.tasksContainer}>
           <div className={styles.tasksContainerHeader}>
-            <div className={styles.createdTasksCounter}>
-              <span>{"Tarefas criadas"}</span>
-              <div className={styles.taskCounter}>{tasks.length}</div>
-            </div>
+            <TotalTasksCounter totalTasksQuantity={tasks.length} />
             <div className={styles.finishedTasksCounter}>
               <span>{"Concluídas"}</span>
-              <div className={styles.taskCounter}>{getFinishedTasks()}</div>
+              <div className={styles.taskCounter}>{finishedTasksValue}</div>
             </div>
           </div>
           {tasks.length === 0 ? (
