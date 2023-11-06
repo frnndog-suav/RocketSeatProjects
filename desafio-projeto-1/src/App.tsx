@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./App.module.css";
-import ClipBoardImg from "./assets/clipboard.svg";
 import { CreateButton } from "./components/CreateButton";
+import { EmptyTasksListContainer } from "./components/EmptyTasksListContainer";
 import { FinishedTasksCounter } from "./components/FinishedTasksCounter";
 import { Header } from "./components/Header";
 import { Input } from "./components/Input";
@@ -58,15 +58,7 @@ function App() {
             <FinishedTasksCounter tasks={tasks} />
           </div>
           {tasks.length === 0 ? (
-            <div className={styles.taskContainerBody}>
-              <img src={ClipBoardImg} alt="Prancheta" />
-              <div>
-                <span className={styles.boldText}>
-                  {"Você ainda não tem tarefas cadastradas"}
-                </span>
-                <span>{"Crie tarefas e organize seus itens a fazer"}</span>
-              </div>
-            </div>
+            <EmptyTasksListContainer />
           ) : (
             <div className={styles.taskList}>
               {tasks.map((task) => (
