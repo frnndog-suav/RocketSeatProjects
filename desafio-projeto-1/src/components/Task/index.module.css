@@ -16,8 +16,15 @@
   gap: 0.75rem;
 }
 
-.checkboxAndText span {
+.taskTextUnchecked {
   color: var(--gray-100);
+  font-size: 0.875rem;
+  line-height: 140%;
+}
+
+.taskTexChecked {
+  text-decoration: line-through;
+  color: var(--gray-300);
   font-size: 0.875rem;
   line-height: 140%;
 }

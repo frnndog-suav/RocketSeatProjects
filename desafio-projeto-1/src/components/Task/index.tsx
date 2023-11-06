@@ -28,7 +28,12 @@ export const Task: FC<TaskProps> = ({
     <div className={styles.task}>
       <div className={styles.checkboxAndText}>
         <Checkbox handleChecked={switchCheckboxState} isChecked={isChecked} />
-        <span>{text}</span>
+        <span
+          className={
+            isChecked ? styles.taskTexChecked : styles.taskTextUnchecked
+          }>
+          {text}
+        </span>
       </div>
       <DeleteButton handleOnClick={removeTask} id={id} />
     </div>
