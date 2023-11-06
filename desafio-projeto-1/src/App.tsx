@@ -3,20 +3,16 @@ import { v4 as uuidv4 } from "uuid";
 import styles from "./App.module.css";
 import ClipBoardImg from "./assets/clipboard.svg";
 import { CreateButton } from "./components/CreateButton";
+import { FinishedTasksCounter } from "./components/FinishedTasksCounter";
 import { Header } from "./components/Header";
 import { Input } from "./components/Input";
 import { Task } from "./components/Task";
-import { TaskObj } from "./types";
 import { TotalTasksCounter } from "./components/TotalTasksCounter";
+import { TaskObj } from "./types";
 
 function App() {
   const [tasks, setTasks] = useState<TaskObj[]>([]);
   const [newTask, setNewTask] = useState<string>("");
-
-  const finishedTasks = tasks.filter((task) => task.isChecked).length;
-
-  const finishedTasksValue =
-    finishedTasks === 0 ? 0 : `${finishedTasks} de ${tasks.length}`;
 
   function handleInputTextChange(event: ChangeEvent<HTMLInputElement>) {
     event.target.setCustomValidity("");
@@ -59,10 +55,7 @@ function App() {
         <div className={styles.tasksContainer}>
           <div className={styles.tasksContainerHeader}>
             <TotalTasksCounter totalTasksQuantity={tasks.length} />
-            <div className={styles.finishedTasksCounter}>
-              <span>{"Concluídas"}</span>
-              <div className={styles.taskCounter}>{finishedTasksValue}</div>
-            </div>
+            <FinishedTasksCounter tasks={tasks} />
           </div>
           {tasks.length === 0 ? (
             <div className={styles.taskContainerBody}>
