@@ -2,8 +2,7 @@ import { styled } from "styled-components";
 
 export const ButtonContainer = styled.button`
   font-size: 0.875rem;
-  line-height: 160%;
-  font-family: "Roboto", sans-serif;
+  line-height: 160%;  
   font-weight: 700;
   padding: 0.75rem 0.5rem;
   border-radius: 6px;
