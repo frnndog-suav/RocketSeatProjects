@@ -1,5 +1,11 @@
+import { FC } from "react";
 import { ButtonContainer } from "./styles";
 
-export const Button = () => {
-  return <ButtonContainer>LABEL</ButtonContainer>;
-};
+interface ButtonProps {
+  text: string;
+  handleOnClick: () => void;
+}
+
+export const Button: FC<ButtonProps> = ({ handleOnClick, text }) => (
+  <ButtonContainer onClick={handleOnClick}>{text}</ButtonContainer>
+);
