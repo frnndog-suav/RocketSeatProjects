@@ -1,5 +1,6 @@
 import { Button } from "../../components/Button";
 import { Cart } from "../../components/Cart";
+import { PaymentMethodOption } from "../../components/PaymentMethodOption";
 
 import { RemoveItemButton } from "../../components/RemoveItemButton";
 import { ShoppingCartButton } from "../../components/ShoppingCartButton";
@@ -7,10 +8,11 @@ import { ShoppingCartButton } from "../../components/ShoppingCartButton";
 export const Home = () => {
   return (
     <div>
-      <Button handleOnClick={() => console.log("teste")} text="TESTE" />
+      {/* <Button handleOnClick={() => console.log("teste")} />
       <RemoveItemButton handleOnClick={() => console.log("teste")} />
       <ShoppingCartButton handleOnClick={() => console.log("teste")} />
-      <Cart />
+      <Cart /> */}
+      <PaymentMethodOption isChecked />
     </div>
   );
 };

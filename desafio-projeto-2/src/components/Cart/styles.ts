@@ -35,16 +35,3 @@ export const CounterBadge = styled.div<CounterBadgeProps>`
     top: -0.5rem;
   }
 `;
-
-// display: flex;
-//   align-items: center;
-//   gap: 0.5rem;
-
-//   &::before {
-//     content: "";
-//     width: 0.5rem;
-//     height: 0.5rem;
-//     border-radius: 999px;
-//     background-color: ${(props) =>
-//       props.theme[STATUS_COLORS[props.statusColor]]};
-//   }
