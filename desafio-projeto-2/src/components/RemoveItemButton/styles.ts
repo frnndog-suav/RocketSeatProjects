@@ -8,7 +8,6 @@ export const RemoveItemButtonContainer = styled.button`
   line-height: 160%;
   border-radius: 6px;
   border: none;
-  width: 91px;
   height: 32px;
   padding: 0 0.5rem;
   gap: 0.25rem;
