@@ -1,22 +1,34 @@
+import { CreditCard, Icon } from "@phosphor-icons/react";
 import { FC } from "react";
+import { PaymentMethod } from "../../constants/types";
 import {
   PaymentMethodOptionCheckedContainer,
   PaymentMethodOptionContainer,
 } from "./styles";
 
 interface PaymentMethodOptionProps {
+  paymentMethod: PaymentMethod;
+  icon: Icon;
   isChecked?: boolean;
 }
 
 export const PaymentMethodOption: FC<PaymentMethodOptionProps> = ({
+  paymentMethod,
+  icon: Icon,
   isChecked = false,
 }) => {
   if (isChecked) {
     return (
       <PaymentMethodOptionCheckedContainer>
         <div>
-          <input type="radio" id="html" name="fav_language" value="HTML" />
-          <label htmlFor="html">CARTÃO DE CRÉDITO</label>
+          <Icon size={32} />
+          <input
+            type="radio"
+            id={paymentMethod}
+            name="fav_language"
+            value={paymentMethod}
+          />
+          <label htmlFor={paymentMethod}>{paymentMethod}</label>
         </div>
       </PaymentMethodOptionCheckedContainer>
     );
@@ -25,8 +37,14 @@ export const PaymentMethodOption: FC<PaymentMethodOptionProps> = ({
   return (
     <PaymentMethodOptionContainer>
       <div>
-        <input type="radio" id="html" name="fav_language" value="HTML" />
-        <label htmlFor="html">CARTÃO DE CRÉDITO</label>
+        <CreditCard size={32} />
+        <input
+          type="radio"
+          id={paymentMethod}
+          name="método de pagamento"
+          value={paymentMethod}
+        />
+        <label htmlFor={paymentMethod}>{paymentMethod}</label>
       </div>
     </PaymentMethodOptionContainer>
   );

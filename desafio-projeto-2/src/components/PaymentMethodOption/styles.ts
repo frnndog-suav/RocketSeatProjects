@@ -2,17 +2,24 @@ import styled from "styled-components";
 
 const BasePaymentMethodContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   padding: 1rem;
 
+  & div {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: ${(props) => props.theme.purple};
+
+    & label {
+      width: 100%;
+      color: ${(props) => props.theme["base-text"]};
+    }
+  }
+
   border-radius: 6px;
   height: 51px;
-
-  & label {
-    width: 100%;
-    color: ${(props) => props.theme["base-text"]};
-  }
 
   input[type="radio"] {
     display: none;
