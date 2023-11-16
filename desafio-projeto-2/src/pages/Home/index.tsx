@@ -1,9 +1,9 @@
-import { Input } from "../../components/Input";
+import { Counter } from "../../components/Counter";
 
 export const Home = () => {
   return (
     <div>
-      <Input />
+      <Counter />
     </div>
   );
 };
