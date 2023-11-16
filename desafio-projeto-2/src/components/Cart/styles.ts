@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 
 export const CartContainer = styled.div`
   display: flex;
+  position: relative;
 `;
 
 export const CartBadge = styled.div`
@@ -30,8 +31,8 @@ export const CounterBadge = styled.div<CounterBadgeProps>`
     font-size: 0.75rem;
     font-weight: 600;
     font-family: "Roboto";
-    position: relative;
-    left: -0.8rem;
-    top: -0.5rem;
+    position: absolute;
+    top: -10px;
+    left: 24px;
   }
 `;
