@@ -10,9 +10,6 @@ export const MenuOptionContainer = styled.div`
   border-top-left-radius: 6px;
   border-bottom-left-radius: 36px;
   border-bottom-right-radius: 6px;
-  /* width: 256px;
-  height: 310px; */
-  /* padding: 4rem 7.5rem; */
   padding-left: 2rem;
   padding-right: 2rem;
   padding-bottom: 1rem;
@@ -89,4 +86,10 @@ export const ValueContainer = styled.div`
     line-height: 130%;
     color: ${(props) => props.theme["base-text"]};
   }
+`;
+
+export const TagsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 `;

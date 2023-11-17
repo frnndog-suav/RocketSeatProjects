@@ -7,6 +7,7 @@ import {
   CoffeeTag,
   MenuOptionBottom,
   MenuOptionContainer,
+  TagsContainer,
   ValueContainer,
 } from "./styles";
 
@@ -18,13 +19,25 @@ export const MenuOption: FC<MenuOptionProps> = ({ coffee }) => {
   return (
     <MenuOptionContainer>
       <img src={coffee.imgSrc} alt={coffee.name} />
-      <CoffeeTag>TRADICIONAL</CoffeeTag>
+      <TagsContainer>
+        {coffee.tags.map((tag) => (
+          <CoffeeTag key={`${coffee.id}-${tag}`}>{tag}</CoffeeTag>
+        ))}
+      </TagsContainer>
+
       <span>{coffee.name}</span>
       <p>{coffee.description}</p>
       <MenuOptionBottom>
         <ValueContainer>
           <p>R$</p>
-          <span>{coffee.value}</span>
+          <span>
+            {new Intl.NumberFormat("pt-Br", {
+              style: "currency",
+              currency: "BRL",
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 3,
+            }).format(coffee.value)}
+          </span>
         </ValueContainer>
         <ActionsContainer>
           <Counter />

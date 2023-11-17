@@ -9,17 +9,7 @@ export const Home = () => {
       <img src={Intro} />
       <MenuContainer>
         <span>{"Nossos Cafés"}</span>
-        {/* <MenuRow>
-          <MenuOption />
-          <MenuOption />
-          <MenuOption />
-          <MenuOption />
-        </MenuRow> */}
         <MenuGrid>
-          {/* <MenuOption />
-          <MenuOption />
-          <MenuOption />
-          <MenuOption /> */}
           {coffeesList.map((coffee) => (
             <MenuOption key={coffee.id} coffee={coffee} />
           ))}

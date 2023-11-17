@@ -12,7 +12,7 @@ import CubanoImg from "../assets/coffee/cubano.svg";
 import HavaianoImg from "../assets/coffee/havaiano.svg";
 import ArabeImg from "../assets/coffee/arabe.svg";
 import IrlandesImg from "../assets/coffee/irlandes.svg";
-import TradicionalImg from "../assets/coffee/americano.svg";
+import TradicionalImg from "../assets/coffee/tradicional.svg";
 
 export const coffeesList: Coffee[] = [
   {
