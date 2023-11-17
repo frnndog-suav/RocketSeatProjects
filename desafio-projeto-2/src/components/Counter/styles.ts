@@ -8,7 +8,6 @@ export const CounterContainer = styled.div`
   border-radius: 6px;
   gap: 0.25rem;
   width: fit-content;
-  height: 32px;
 
   & input {
     text-align: center;

@@ -11,12 +11,16 @@ export const HomeContainer = styled.main`
 `;
 
 export const MenuContainer = styled.div`
-  padding: 0px 13.5rem;
-  background-color: red;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 5rem;
 
   & span {
     font-family: "Baloo 2", sans-serif;
     line-height: 130%;
     font-size: 2rem;
+    padding-bottom: 5rem;
+    line-height: 130%;
+    font-weight: 600;
   }
 `;
