@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 export const HomeContainer = styled.main`
   display: flex;
   flex-direction: column;
+  padding-bottom: 3rem;
 
   & img {
     width: 100%;
@@ -23,4 +24,10 @@ export const MenuContainer = styled.div`
     line-height: 130%;
     font-weight: 600;
   }
+`;
+
+export const MenuGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4rem;
 `;

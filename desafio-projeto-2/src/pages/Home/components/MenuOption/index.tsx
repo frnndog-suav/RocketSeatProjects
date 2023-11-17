@@ -1,6 +1,7 @@
-import ImgCafe from "../../../../assets/coffee/americano.svg";
+import { FC } from "react";
 import { Counter } from "../../../../components/Counter";
 import { ShoppingCartButton } from "../../../../components/ShoppingCartButton";
+import { Coffee } from "../../../../interfaces/interfaces";
 import {
   ActionsContainer,
   CoffeeTag,
@@ -9,17 +10,21 @@ import {
   ValueContainer,
 } from "./styles";
 
-export const MenuOption = () => {
+interface MenuOptionProps {
+  coffee: Coffee;
+}
+
+export const MenuOption: FC<MenuOptionProps> = ({ coffee }) => {
   return (
     <MenuOptionContainer>
-      <img src={ImgCafe} />
+      <img src={coffee.imgSrc} alt={coffee.name} />
       <CoffeeTag>TRADICIONAL</CoffeeTag>
-      <span>Expresso Tradicional</span>
-      <p>O tradicional café feito com água quente e grãos moídos</p>
+      <span>{coffee.name}</span>
+      <p>{coffee.description}</p>
       <MenuOptionBottom>
         <ValueContainer>
           <p>R$</p>
-          <span>9,90</span>
+          <span>{coffee.value}</span>
         </ValueContainer>
         <ActionsContainer>
           <Counter />

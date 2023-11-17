@@ -43,7 +43,7 @@ export const MenuOptionBottom = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  gap: 3rem;
+  width: 100%;
   margin-top: 1.5rem;
 `;
 
