@@ -1,20 +1,20 @@
-import { Coffee } from "../interfaces/interfaces";
 import CafeAmericanoImg from "../assets/coffee/americano.svg";
-import ExpressoCremosoImg from "../assets/coffee/expresso-cremoso.svg";
-import ExpressoGeladoImg from "../assets/coffee/cafe-gelado.svg";
+import ArabeImg from "../assets/coffee/arabe.svg";
 import CafeComGeloImg from "../assets/coffee/cafe-com-leite.svg";
-import LatteImg from "../assets/coffee/latte.svg";
+import ExpressoGeladoImg from "../assets/coffee/cafe-gelado.svg";
 import CapuccinoImg from "../assets/coffee/capuccino.svg";
-import MacchiatoImg from "../assets/coffee/macchiato.svg";
-import MocaccinoImg from "../assets/coffee/mochaccino.svg";
 import ChocolateQuenteImg from "../assets/coffee/chocolate-quente.svg";
 import CubanoImg from "../assets/coffee/cubano.svg";
+import ExpressoCremosoImg from "../assets/coffee/expresso-cremoso.svg";
 import HavaianoImg from "../assets/coffee/havaiano.svg";
-import ArabeImg from "../assets/coffee/arabe.svg";
 import IrlandesImg from "../assets/coffee/irlandes.svg";
+import LatteImg from "../assets/coffee/latte.svg";
+import MacchiatoImg from "../assets/coffee/macchiato.svg";
+import MocaccinoImg from "../assets/coffee/mochaccino.svg";
 import TradicionalImg from "../assets/coffee/tradicional.svg";
+import { Coffee, CoffeeMenuItem } from "../constants/types";
 
-export const coffeesList: Coffee[] = [
+export const coffeesList: CoffeeMenuItem[] = [
   {
     id: "1",
     description: "O tradicional café feito com água quente e grãos moídos",
@@ -22,6 +22,7 @@ export const coffeesList: Coffee[] = [
     name: "Expresso Tradicional",
     tags: ["TRADICIONAL"],
     value: 9.9,
+    type: Coffee.Default,
   },
   {
     id: "2",
@@ -30,6 +31,7 @@ export const coffeesList: Coffee[] = [
     name: "Expresso Americano",
     tags: ["TRADICIONAL"],
     value: 9.9,
+    type: Coffee.Americano,
   },
   {
     id: "3",
@@ -38,6 +40,7 @@ export const coffeesList: Coffee[] = [
     name: "Expresso Cremoso",
     tags: ["TRADICIONAL"],
     value: 9.9,
+    type: Coffee.ExpressoCremoso,
   },
   {
     id: "4",
@@ -46,14 +49,16 @@ export const coffeesList: Coffee[] = [
     name: "Expresso Gelado",
     tags: ["TRADICIONAL", "GELADO"],
     value: 9.9,
+    type: Coffee.ExpressoGelado,
   },
   {
     id: "5",
     description: "Meio a meio de expresso tradicional com leite vaporizado",
     imgSrc: CafeComGeloImg,
-    name: "Café com Leite",
+    name: "Café com Gelo",
     tags: ["TRADICIONAL", "COM LEITE"],
     value: 9.9,
+    type: Coffee.ComGelo,
   },
   {
     id: "6",
@@ -63,6 +68,7 @@ export const coffeesList: Coffee[] = [
     name: "Latte",
     tags: ["TRADICIONAL", "COM LEITE"],
     value: 9.9,
+    type: Coffee.Latte,
   },
   {
     id: "7",
@@ -72,6 +78,7 @@ export const coffeesList: Coffee[] = [
     name: "Capuccino",
     tags: ["TRADICIONAL", "COM LEITE"],
     value: 9.9,
+    type: Coffee.Capuccino,
   },
   {
     id: "8",
@@ -81,6 +88,7 @@ export const coffeesList: Coffee[] = [
     name: "Macchiato",
     tags: ["TRADICIONAL", "COM LEITE"],
     value: 9.9,
+    type: Coffee.Macchiato,
   },
   {
     id: "9",
@@ -89,6 +97,7 @@ export const coffeesList: Coffee[] = [
     name: "Mochaccino",
     tags: ["TRADICIONAL", "COM LEITE"],
     value: 9.9,
+    type: Coffee.Mocaccino,
   },
   {
     id: "10",
@@ -97,6 +106,7 @@ export const coffeesList: Coffee[] = [
     name: "Chocolate Quente",
     tags: ["ESPECIAL", "COM LEITE"],
     value: 9.9,
+    type: Coffee.ChocolateQuente,
   },
   {
     id: "11",
@@ -106,6 +116,7 @@ export const coffeesList: Coffee[] = [
     name: "Cubano",
     tags: ["ESPECIAL", "ALCOÓLICO", "GELADO"],
     value: 9.9,
+    type: Coffee.Cubano,
   },
   {
     id: "12",
@@ -114,6 +125,7 @@ export const coffeesList: Coffee[] = [
     name: "Havaiano",
     tags: ["ESPECIAL"],
     value: 9.9,
+    type: Coffee.Havaiano,
   },
   {
     id: "13",
@@ -122,6 +134,7 @@ export const coffeesList: Coffee[] = [
     name: "Árabe",
     tags: ["ESPECIAL"],
     value: 9.9,
+    type: Coffee.Arabe,
   },
   {
     id: "14 ",
@@ -130,5 +143,6 @@ export const coffeesList: Coffee[] = [
     name: "Irlandês",
     tags: ["ESPECIAL", "ALCOÓLICO"],
     value: 9.9,
+    type: Coffee.Irlandes,
   },
 ];

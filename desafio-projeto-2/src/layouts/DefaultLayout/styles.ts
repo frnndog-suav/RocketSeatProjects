@@ -7,6 +7,8 @@ export const HeaderContainer = styled.header`
   background-color: ${(props) => props.theme.background};
   padding: 2rem 10rem;
   justify-content: space-between;
+  position: fixed;
+  width: 100%;
 
   & img {
     height: 2.5rem;

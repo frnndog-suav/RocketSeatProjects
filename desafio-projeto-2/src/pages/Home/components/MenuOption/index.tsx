@@ -1,7 +1,8 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Counter } from "../../../../components/Counter";
 import { ShoppingCartButton } from "../../../../components/ShoppingCartButton";
-import { Coffee } from "../../../../interfaces/interfaces";
+import { CoffeeMenuItem, ShoppingCartItem } from "../../../../constants/types";
+import { useShoppingCartContext } from "../../../../contexts";
 import {
   ActionsContainer,
   CoffeeTag,
@@ -12,10 +13,30 @@ import {
 } from "./styles";
 
 interface MenuOptionProps {
-  coffee: Coffee;
+  coffee: CoffeeMenuItem;
 }
 
 export const MenuOption: FC<MenuOptionProps> = ({ coffee }) => {
+  const [itemQuantity, setItemQuantity] = useState(0);
+  const { handleAddItem } = useShoppingCartContext();
+
+  function handleDecreaseQuantity() {
+    setItemQuantity((currentCount) => currentCount - 1);
+  }
+
+  function handleIncreaseQuantity() {
+    setItemQuantity((currentCount) => currentCount + 1);
+  }
+
+  function handleAddToShoppingCart() {
+    const item: ShoppingCartItem = {
+      coffee,
+      quantity: itemQuantity,
+    };
+
+    handleAddItem(item);
+  }
+
   return (
     <MenuOptionContainer>
       <img src={coffee.imgSrc} alt={coffee.name} />
@@ -40,8 +61,12 @@ export const MenuOption: FC<MenuOptionProps> = ({ coffee }) => {
           </span>
         </ValueContainer>
         <ActionsContainer>
-          <Counter />
-          <ShoppingCartButton handleOnClick={() => console.log("teste")} />
+          <Counter
+            handleDecreaseQuantity={handleDecreaseQuantity}
+            handleIncreaseQuantity={handleIncreaseQuantity}
+            itemQuantity={itemQuantity}
+          />
+          <ShoppingCartButton handleOnClick={handleAddToShoppingCart} />
         </ActionsContainer>
       </MenuOptionBottom>
     </MenuOptionContainer>

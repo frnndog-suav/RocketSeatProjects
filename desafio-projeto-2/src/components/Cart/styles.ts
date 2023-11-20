@@ -23,6 +23,7 @@ interface CounterBadgeProps {
 
 export const CounterBadge = styled.div<CounterBadgeProps>`
   &::after {
+    display: ${(props) => (props.count === 0 ? "none" : "block")};
     content: ${(props) => `"${props.count}"`};
     padding: 0.3rem 0.5rem;
     border-radius: 999px;
