@@ -5,6 +5,7 @@ const BasePaymentMethodContainer = styled.div`
   justify-content: left;
   align-items: center;
   padding: 1rem;
+  width: 100%;
 
   & div {
     display: flex;
@@ -15,6 +16,7 @@ const BasePaymentMethodContainer = styled.div`
     & label {
       width: 100%;
       color: ${(props) => props.theme["base-text"]};
+      font-size: 0.75rem;
     }
   }
 

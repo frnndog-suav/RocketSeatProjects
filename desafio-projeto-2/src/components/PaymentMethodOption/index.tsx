@@ -25,7 +25,7 @@ export const PaymentMethodOption: FC<PaymentMethodOptionProps> = ({
           <input
             type="radio"
             id={paymentMethod}
-            name="fav_language"
+            name="método de pagamento"
             value={paymentMethod}
           />
           <label htmlFor={paymentMethod}>{paymentMethod}</label>
