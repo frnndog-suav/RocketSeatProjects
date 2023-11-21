@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-const BasePaymentMethodContainer = styled.div`
+interface BasePaymentMethodContainerProps
+  extends React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+  > {}
+
+const BasePaymentMethodContainer = styled.div<BasePaymentMethodContainerProps>`
   display: flex;
   justify-content: left;
   align-items: center;
@@ -31,6 +37,7 @@ const BasePaymentMethodContainer = styled.div`
 export const PaymentMethodOptionContainer = styled(BasePaymentMethodContainer)`
   cursor: pointer;
   background-color: ${(props) => props.theme["base-button"]};
+  border: 1px solid transparent;
 
   & label {
     cursor: pointer;

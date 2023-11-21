@@ -1,4 +1,4 @@
-import { CreditCard, Icon } from "@phosphor-icons/react";
+import { Icon } from "@phosphor-icons/react";
 import { FC } from "react";
 import { PaymentMethod } from "../../constants/types";
 import {
@@ -10,16 +10,22 @@ interface PaymentMethodOptionProps {
   paymentMethod: PaymentMethod;
   icon: Icon;
   isChecked?: boolean;
+  selectOption: (paymentMethod: PaymentMethod) => void;
 }
 
 export const PaymentMethodOption: FC<PaymentMethodOptionProps> = ({
   paymentMethod,
   icon: Icon,
   isChecked = false,
+  selectOption,
 }) => {
+  function handleSelectOption() {
+    selectOption(paymentMethod);
+  }
+
   if (isChecked) {
     return (
-      <PaymentMethodOptionCheckedContainer>
+      <PaymentMethodOptionCheckedContainer onClick={handleSelectOption}>
         <div>
           <Icon size={32} />
           <input
@@ -35,9 +41,9 @@ export const PaymentMethodOption: FC<PaymentMethodOptionProps> = ({
   }
 
   return (
-    <PaymentMethodOptionContainer>
+    <PaymentMethodOptionContainer onClick={handleSelectOption}>
       <div>
-        <CreditCard size={32} />
+        <Icon size={32} />
         <input
           type="radio"
           id={paymentMethod}

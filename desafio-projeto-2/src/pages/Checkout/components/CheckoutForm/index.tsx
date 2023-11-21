@@ -6,6 +6,7 @@ import {
   MapPin,
   Money,
 } from "@phosphor-icons/react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as zod from "zod";
 import { Input } from "../../../../components/Input";
@@ -45,6 +46,10 @@ const checkoutFormSchema = zod.object({
 type CheckoutFormData = zod.infer<typeof checkoutFormSchema>;
 
 export function CheckoutForm() {
+  const [isCreditSelected, setIsCreditSelected] = useState(false);
+  const [isDebitSelected, setIsDebitSelected] = useState(false);
+  const [isMoneySelected, setIsMoneySelected] = useState(false);
+
   const checkoutForm = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutFormSchema),
     defaultValues: {
@@ -64,11 +69,31 @@ export function CheckoutForm() {
     console.log(data);
   }
 
+  function selectOption(paymentMethod: PaymentMethod) {
+    switch (paymentMethod) {
+      case PaymentMethod.Credit:
+        setIsCreditSelected(true);
+        setIsDebitSelected(false);
+        setIsMoneySelected(false);
+        return;
+      case PaymentMethod.Debit:
+        setIsCreditSelected(false);
+        setIsDebitSelected(true);
+        setIsMoneySelected(false);
+        return;
+      default:
+        setIsCreditSelected(false);
+        setIsDebitSelected(false);
+        setIsMoneySelected(true);
+        return;
+    }
+  }
+
   return (
     <CheckoutFormContainer>
       <Title>Complete seu pedido</Title>
       <FormContent>
-        <FormContentMessage iconColor="yellow-dark">
+        <FormContentMessage iconcolor="yellow-dark">
           <MapPin size={"1.375rem"} />
           <div>
             <FirstLineMessage>Endereço de Entrega</FirstLineMessage>
@@ -109,7 +134,7 @@ export function CheckoutForm() {
       </FormContent>
 
       <FormContent>
-        <FormContentMessage iconColor="purple">
+        <FormContentMessage iconcolor="purple">
           <CurrencyDollar size={"1.375rem"} />
           <div>
             <FirstLineMessage>Pagamento</FirstLineMessage>
@@ -123,17 +148,20 @@ export function CheckoutForm() {
           <PaymentMethodOption
             icon={CreditCard}
             paymentMethod={PaymentMethod.Credit}
-            isChecked={false}
+            isChecked={isCreditSelected}
+            selectOption={selectOption}
           />
           <PaymentMethodOption
             icon={Bank}
             paymentMethod={PaymentMethod.Debit}
-            isChecked={false}
+            isChecked={isDebitSelected}
+            selectOption={selectOption}
           />
           <PaymentMethodOption
             icon={Money}
             paymentMethod={PaymentMethod.Money}
-            isChecked={false}
+            isChecked={isMoneySelected}
+            selectOption={selectOption}
           />
         </PaymentMethodOptionSelection>
       </FormContent>

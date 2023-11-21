@@ -36,14 +36,14 @@ export const FormRow = styled.div`
 `;
 
 interface FormContentMessageProps {
-  iconColor: keyof typeof defaultTheme;
+  iconcolor: keyof typeof defaultTheme;
 }
 
 export const FormContentMessage = styled.div<FormContentMessageProps>`
   display: flex;
   gap: 0.5rem;
   margin-bottom: 2rem;
-  color: ${(props) => props.theme[props.iconColor]};
+  color: ${(props) => props.theme[props.iconcolor]};
 `;
 
 const MessageLine = styled.p`
