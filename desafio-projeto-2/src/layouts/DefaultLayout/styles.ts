@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
   display: flex;
-  align-items: center;
-  height: 104px;
+  align-items: center;  
   background-color: ${(props) => props.theme.background};
   padding: 2rem 10rem;
   justify-content: space-between;

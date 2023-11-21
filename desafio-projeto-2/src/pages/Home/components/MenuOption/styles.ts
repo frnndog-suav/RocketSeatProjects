@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MenuOptionContainer = styled.div`
+export const MenuOptionContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,16 +17,16 @@ export const MenuOptionContainer = styled.div`
   gap: 0.5rem;
 
   & img {
-    width: 7.5rem;
-    height: 7.5rem;
+    width: 7.5rem !important;
+    height: 7.5rem !important;
     margin-top: -2rem;
   }
 
   & span {
-    font-size: 1.25rem;
-    line-height: 130%;
-    font-weight: 600;
-    padding: 0px;
+    font-size: 1.25rem !important;
+    line-height: 130% !important;
+    font-weight: 600 !important;
+    padding: 0px !important;
   }
 
   & p {

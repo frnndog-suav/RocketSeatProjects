@@ -4,6 +4,7 @@ export const HomeContainer = styled.main`
   display: flex;
   flex-direction: column;
   padding-bottom: 3rem;
+  padding-top: 4rem;
 
   & img {
     width: 100%;
