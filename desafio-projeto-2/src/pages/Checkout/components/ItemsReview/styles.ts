@@ -9,5 +9,5 @@ export const Title = styled.span`
 
 export const ItemsReviewContainer = styled.div`
   display: flex;
-  flex-grow: 1;
+  width: 50%;
 `;
