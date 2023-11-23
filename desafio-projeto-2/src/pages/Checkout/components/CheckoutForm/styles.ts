@@ -86,3 +86,20 @@ export const PaymentMethodOptionSelection = styled.div`
   align-items: center;
   gap: 1rem;
 `;
+
+export const CheckoutFormInput = styled.input`
+  background-color: ${(props) => props.theme["base-input"]};
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem;
+  font-size: 0.875rem;  
+  line-height: 130%;
+  color: ${(props) => props.theme["base-label"]};
+  outline: none;
+  border: 1px solid ${props => props.theme["base-button"]};
+  width: inherit;
+
+  &:focus {
+    border: 1px solid ${(props) => props.theme["yellow-dark"]};
+  }
+`;

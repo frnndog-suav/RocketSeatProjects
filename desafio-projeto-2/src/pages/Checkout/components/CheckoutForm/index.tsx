@@ -9,13 +9,13 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as zod from "zod";
-import { Input } from "../../../../components/Input";
 import { PaymentMethodOption } from "../../../../components/PaymentMethodOption";
 import { PaymentMethod } from "../../../../constants/types";
 import {
   AddressAdditionalInfoInput,
   AddressInput,
   CheckoutFormContainer,
+  CheckoutFormInput,
   CityInput,
   FirstLineMessage,
   Form,
@@ -63,9 +63,14 @@ export function CheckoutForm() {
     },
   });
 
-  const { handleSubmit } = checkoutForm;
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = checkoutForm;
 
   function handleOrderConfirmation(data: CheckoutFormData) {
+    console.log("errors", errors);
     console.log(data);
   }
 
@@ -104,30 +109,42 @@ export function CheckoutForm() {
         </FormContentMessage>
         <Form onSubmit={handleSubmit(handleOrderConfirmation)}>
           <PostalCodeInput>
-            <Input placeholder="CEP" required />
+            <CheckoutFormInput
+              placeholder="CEP"
+              {...register("postalCode", { valueAsNumber: true })}
+            />
           </PostalCodeInput>
           <AddressInput>
-            <Input placeholder="Rua" required />
+            <CheckoutFormInput placeholder="Rua" {...register("address")} />
           </AddressInput>
 
           <FormRow>
             <div>
-              <Input placeholder="Número" required />
+              <CheckoutFormInput
+                placeholder="Número"
+                {...register("addressNumber", { valueAsNumber: true })}
+              />
             </div>
             <AddressAdditionalInfoInput>
-              <Input placeholder="Complemento" />
+              <CheckoutFormInput
+                placeholder="Complemento"
+                {...register("addressAdditionalInfo")}
+              />
             </AddressAdditionalInfoInput>
           </FormRow>
 
           <FormRow>
             <div>
-              <Input placeholder="Bairro" required />
+              <CheckoutFormInput
+                placeholder="Bairro"
+                {...register("neighborhood")}
+              />
             </div>
             <CityInput>
-              <Input placeholder="Cidade" required />
+              <CheckoutFormInput placeholder="Cidade" {...register("city")} />
             </CityInput>
             <UFInput>
-              <Input placeholder="UF" required />
+              <CheckoutFormInput placeholder="UF" {...register("uf")} />
             </UFInput>
           </FormRow>
         </Form>
