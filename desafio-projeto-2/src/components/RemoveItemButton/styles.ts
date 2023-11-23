@@ -8,7 +8,7 @@ export const RemoveItemButtonContainer = styled.button`
   line-height: 160%;
   border-radius: 6px;
   border: none;
-  height: 32px;
+  height: 40px;
   padding: 0 0.5rem;
   gap: 0.25rem;
   background-color: ${(props) => props.theme["base-button"]};

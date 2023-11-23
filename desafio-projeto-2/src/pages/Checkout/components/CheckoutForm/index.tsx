@@ -1,4 +1,3 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Bank,
   CreditCard,
@@ -7,8 +6,8 @@ import {
   Money,
 } from "@phosphor-icons/react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import * as zod from "zod";
+import { useFormContext } from "react-hook-form";
+import { CheckoutFormData } from "../..";
 import { PaymentMethodOption } from "../../../../components/PaymentMethodOption";
 import { PaymentMethod } from "../../../../constants/types";
 import {
@@ -29,45 +28,16 @@ import {
   UFInput,
 } from "./styles";
 
-const checkoutFormSchema = zod.object({
-  postalCode: zod
-    .number()
-    .nonnegative()
-    .min(8, "CEP inválido")
-    .max(8, "CEP inválido"),
-  address: zod.string(),
-  addressNumber: zod.number().nonnegative(),
-  addressAdditionalInfo: zod.string().optional(),
-  neighborhood: zod.string(),
-  city: zod.string(),
-  uf: zod.string(),
-});
-
-type CheckoutFormData = zod.infer<typeof checkoutFormSchema>;
-
 export function CheckoutForm() {
   const [isCreditSelected, setIsCreditSelected] = useState(false);
   const [isDebitSelected, setIsDebitSelected] = useState(false);
   const [isMoneySelected, setIsMoneySelected] = useState(false);
 
-  const checkoutForm = useForm<CheckoutFormData>({
-    resolver: zodResolver(checkoutFormSchema),
-    defaultValues: {
-      address: "",
-      addressAdditionalInfo: "",
-      addressNumber: 0,
-      city: "",
-      neighborhood: "",
-      postalCode: 0,
-      uf: "",
-    },
-  });
-
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = checkoutForm;
+  } = useFormContext<CheckoutFormData>();
 
   function handleOrderConfirmation(data: CheckoutFormData) {
     console.log("errors", errors);
