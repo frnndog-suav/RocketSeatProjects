@@ -1,6 +1,7 @@
 import { Button } from "../../../../components/Button";
 import { Counter } from "../../../../components/Counter";
 import { RemoveItemButton } from "../../../../components/RemoveItemButton";
+import { ShoppingCartItem } from "../../../../constants/types";
 import { useShoppingCartContext } from "../../../../contexts";
 import {
   Divider,
@@ -18,15 +19,19 @@ import {
 const deliveryFee = 3.5;
 
 export function ItemsReview() {
-  const { items, handleAddItem } = useShoppingCartContext();
+  const { items, increaseItemQuantity } = useShoppingCartContext();
 
-  const totalItensPrice = items.reduce(
+  const totalItemsPrice = items.reduce(
     (previousItems, currentItem) =>
       currentItem.coffee.value * currentItem.quantity + previousItems,
     0
   );
 
-  const orderPrice = totalItensPrice + deliveryFee;
+  const orderPrice = totalItemsPrice + deliveryFee;
+
+  function handleIncreaseItemQuantity(handledItem: ShoppingCartItem) {
+    increaseItemQuantity(handledItem);
+  }
 
   return (
     <ItemsReviewContainer>
@@ -50,7 +55,9 @@ export function ItemsReview() {
                 </ItemTexts>
                 <ItemContentActions>
                   <Counter
-                    handleIncreaseQuantity={() => {}}
+                    handleIncreaseQuantity={() =>
+                      handleIncreaseItemQuantity(item)
+                    }
                     handleDecreaseQuantity={() => {}}
                     itemQuantity={item.quantity}
                   />
@@ -69,7 +76,7 @@ export function ItemsReview() {
                 currency: "BRL",
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 3,
-              }).format(totalItensPrice)}
+              }).format(totalItemsPrice)}
             </p>
           </ItemsTotalsContainerRow>
           <ItemsTotalsContainerRow>
