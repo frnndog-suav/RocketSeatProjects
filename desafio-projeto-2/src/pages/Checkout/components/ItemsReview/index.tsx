@@ -1,4 +1,3 @@
-import Cafe from "../../../../assets/coffee/americano.svg";
 import { Button } from "../../../../components/Button";
 import { Counter } from "../../../../components/Counter";
 import { RemoveItemButton } from "../../../../components/RemoveItemButton";
@@ -16,8 +15,18 @@ import {
   Title,
 } from "./styles";
 
+const deliveryFee = 3.5;
+
 export function ItemsReview() {
-  const { items } = useShoppingCartContext();
+  const { items, handleAddItem } = useShoppingCartContext();
+
+  const totalItensPrice = items.reduce(
+    (previousItems, currentItem) =>
+      currentItem.coffee.value * currentItem.quantity + previousItems,
+    0
+  );
+
+  const orderPrice = totalItensPrice + deliveryFee;
 
   return (
     <ItemsReviewContainer>
@@ -26,17 +35,24 @@ export function ItemsReview() {
         {items.map((item) => (
           <Divider key={item.coffee.id}>
             <Item>
-              <img src={Cafe} alt="Café americano" />
+              <img src={item.coffee.imgSrc} alt={item.coffee.name} />
               <ItemContent>
                 <ItemTexts>
-                  <p>Expresso Americano</p>
-                  <span>R$ 9,90</span>
+                  <p>{item.coffee.name}</p>
+                  <span>
+                    {new Intl.NumberFormat("pt-Br", {
+                      style: "currency",
+                      currency: "BRL",
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 3,
+                    }).format(item.coffee.value * item.quantity)}
+                  </span>
                 </ItemTexts>
                 <ItemContentActions>
                   <Counter
                     handleIncreaseQuantity={() => {}}
                     handleDecreaseQuantity={() => {}}
-                    itemQuantity={0}
+                    itemQuantity={item.quantity}
                   />
                   <RemoveItemButton handleOnClick={() => {}} />
                 </ItemContentActions>
@@ -47,15 +63,36 @@ export function ItemsReview() {
         <ItemsTotalsContainer>
           <ItemsTotalsContainerRow>
             <p>Total de itens</p>
-            <p>R$ 29,70</p>
+            <p>
+              {new Intl.NumberFormat("pt-Br", {
+                style: "currency",
+                currency: "BRL",
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 3,
+              }).format(totalItensPrice)}
+            </p>
           </ItemsTotalsContainerRow>
           <ItemsTotalsContainerRow>
             <p>Entrega</p>
-            <p>R$ 3,50</p>
+            <p>
+              {new Intl.NumberFormat("pt-Br", {
+                style: "currency",
+                currency: "BRL",
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 3,
+              }).format(deliveryFee)}
+            </p>
           </ItemsTotalsContainerRow>
           <ItemsTotalsContainerRow>
             <span>Total</span>
-            <span>R$ 33,20</span>
+            <span>
+              {new Intl.NumberFormat("pt-Br", {
+                style: "currency",
+                currency: "BRL",
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 3,
+              }).format(orderPrice)}
+            </span>
           </ItemsTotalsContainerRow>
           <Button />
         </ItemsTotalsContainer>
