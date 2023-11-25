@@ -6,6 +6,7 @@ import { CheckoutForm } from "./components/CheckoutForm";
 import { Coffee } from "@phosphor-icons/react";
 import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { useShoppingCartContext } from "../../contexts";
 import { ItemsReview } from "./components/ItemsReview";
 import {
@@ -37,8 +38,9 @@ const checkoutFormSchema = zod.object({
 
 export type CheckoutFormData = zod.infer<typeof checkoutFormSchema>;
 
-export const Checkout = () => {
+export const CheckoutPage = () => {
   const { items } = useShoppingCartContext();
+  const navigate = useNavigate();
 
   const checkoutForm = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutFormSchema),
@@ -60,7 +62,11 @@ export const Checkout = () => {
   } = checkoutForm;
 
   function handleOrderConfirmation(data: CheckoutFormData) {
-    console.log(data);
+    navigate("/success", {
+      state: {
+        formData: data,
+      },
+    });
   }
 
   useEffect(() => {
