@@ -3,10 +3,17 @@ import { FormProvider, useForm } from "react-hook-form";
 import * as zod from "zod";
 import { CheckoutForm } from "./components/CheckoutForm";
 
+import { Coffee } from "@phosphor-icons/react";
 import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { useShoppingCartContext } from "../../contexts";
 import { ItemsReview } from "./components/ItemsReview";
-import { CheckoutContainer, CheckoutContent, Form } from "./style";
+import {
+  CheckoutContainer,
+  CheckoutContent,
+  EmptyShoppingCartContainer,
+  Form,
+} from "./style";
 
 const cepRegex = /^\d{5}-\d{3}$/;
 
@@ -31,6 +38,8 @@ const checkoutFormSchema = zod.object({
 export type CheckoutFormData = zod.infer<typeof checkoutFormSchema>;
 
 export const Checkout = () => {
+  const { items } = useShoppingCartContext();
+
   const checkoutForm = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutFormSchema),
     defaultValues: {
@@ -65,12 +74,19 @@ export const Checkout = () => {
   return (
     <CheckoutContainer>
       <CheckoutContent>
-        <Form onSubmit={handleSubmit(handleOrderConfirmation)}>
-          <FormProvider {...checkoutForm}>
-            <CheckoutForm />
-            <ItemsReview />
-          </FormProvider>
-        </Form>
+        {items.length === 0 ? (
+          <EmptyShoppingCartContainer>
+            <Coffee size={"10rem"} />
+            <p>{"Você não possui items no seu carrinho ;)"}</p>
+          </EmptyShoppingCartContainer>
+        ) : (
+          <Form onSubmit={handleSubmit(handleOrderConfirmation)}>
+            <FormProvider {...checkoutForm}>
+              <CheckoutForm />
+              <ItemsReview />
+            </FormProvider>
+          </Form>
+        )}
       </CheckoutContent>
       <Toaster />
     </CheckoutContainer>
