@@ -39,7 +39,7 @@ interface FormContentMessageProps {
 export const FormContentMessage = styled.div<FormContentMessageProps>`
   display: flex;
   gap: 0.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
   color: ${(props) => props.theme[props.iconcolor]};
 `;
 

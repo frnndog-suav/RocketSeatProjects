@@ -1,14 +1,7 @@
 import { Button } from "../../../../components/Button";
-import { Counter } from "../../../../components/Counter";
-import { RemoveItemButton } from "../../../../components/RemoveItemButton";
-import { ShoppingCartItem } from "../../../../constants/types";
 import { useShoppingCartContext } from "../../../../contexts";
+import { Review } from "./Review";
 import {
-  Divider,
-  Item,
-  ItemContent,
-  ItemContentActions,
-  ItemTexts,
   ItemsContainer,
   ItemsReviewContainer,
   ItemsTotalsContainer,
@@ -19,12 +12,7 @@ import {
 const deliveryFee = 3.5;
 
 export function ItemsReview() {
-  const {
-    items,
-    increaseItemQuantity,
-    decreaseItemQuantity,
-    removeItemFromShoppingCart,
-  } = useShoppingCartContext();
+  const { items } = useShoppingCartContext();
 
   const totalItemsPrice = items.reduce(
     (previousItems, currentItem) =>
@@ -34,55 +22,12 @@ export function ItemsReview() {
 
   const orderPrice = totalItemsPrice + deliveryFee;
 
-  function handleIncreaseItemQuantity(handledItem: ShoppingCartItem) {
-    increaseItemQuantity(handledItem);
-  }
-
-  function handleDecreaseItemQuantity(handledItem: ShoppingCartItem) {
-    decreaseItemQuantity(handledItem);
-  }
-
-  function handleRemoveItem(handledItem: ShoppingCartItem) {
-    removeItemFromShoppingCart(handledItem);
-  }
-
   return (
     <ItemsReviewContainer>
       <Title>Cafés selecionados</Title>
       <ItemsContainer>
         {items.map((item) => (
-          <Divider key={item.coffee.id}>
-            <Item>
-              <img src={item.coffee.imgSrc} alt={item.coffee.name} />
-              <ItemContent>
-                <ItemTexts>
-                  <p>{item.coffee.name}</p>
-                  <span>
-                    {new Intl.NumberFormat("pt-Br", {
-                      style: "currency",
-                      currency: "BRL",
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 3,
-                    }).format(item.coffee.value * item.quantity)}
-                  </span>
-                </ItemTexts>
-                <ItemContentActions>
-                  <Counter
-                    itemQuantity={item.quantity}
-                    handleIncreaseQuantity={() =>
-                      handleIncreaseItemQuantity(item)
-                    }
-                    handleDecreaseQuantity={() =>
-                      handleDecreaseItemQuantity(item)
-                    }
-                  />
-                  <RemoveItemButton
-                    handleOnClick={() => handleRemoveItem(item)}
-                  />
-                </ItemContentActions>
-              </ItemContent>
-            </Item>
-          </Divider>
+          <Review key={`item-review-${item.coffee.id}`} item={item} />
         ))}
         <ItemsTotalsContainer>
           <ItemsTotalsContainerRow>
