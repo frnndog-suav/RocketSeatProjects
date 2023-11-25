@@ -60,9 +60,9 @@ export function CheckoutForm() {
         <FormContentMessage iconcolor="yellow-dark">
           <MapPin size={"1.375rem"} />
           <div>
-            <FirstLineMessage>Endereço de Entrega</FirstLineMessage>
+            <FirstLineMessage>{"Endereço de Entrega"}</FirstLineMessage>
             <SecondLineMessage>
-              Informe o endereço onde deseja receber seu pedido
+              {"Informe o endereço onde deseja receber seu pedido"}
             </SecondLineMessage>
           </div>
         </FormContentMessage>
@@ -108,9 +108,11 @@ export function CheckoutForm() {
         <FormContentMessage iconcolor="purple">
           <CurrencyDollar size={"1.375rem"} />
           <div>
-            <FirstLineMessage>Pagamento</FirstLineMessage>
+            <FirstLineMessage>{"Pagamento"}</FirstLineMessage>
             <SecondLineMessage>
-              O pagamento é feito na entrega. Escolha a forma que deseja pagar
+              {
+                "O pagamento é feito na entrega. Escolha a forma que deseja pagar"
+              }
             </SecondLineMessage>
           </div>
         </FormContentMessage>
