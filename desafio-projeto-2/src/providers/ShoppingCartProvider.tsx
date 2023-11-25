@@ -6,6 +6,7 @@ interface ShoppingCartContextType {
   handleAddItem(item: ShoppingCartItem): void;
   getShoppingCartItemsAmount(): number;
   increaseItemQuantity(handledItem: ShoppingCartItem): void;
+  decreaseItemQuantity(handledItem: ShoppingCartItem): void;
 }
 
 export const ShoppingCartContext = createContext({} as ShoppingCartContextType);
@@ -59,6 +60,21 @@ export function ShoppingCartContextProvider({
     setItems(updatedItems);
   }
 
+  function decreaseItemQuantity(handledItem: ShoppingCartItem) {
+    const updatedItems = items.map((item) => {
+      if (item.coffee.id === handledItem.coffee.id) {
+        return {
+          ...item,
+          quantity: item.quantity === 0 ? 0 : item.quantity - 1,
+        };
+      }
+
+      return item;
+    });
+
+    setItems(updatedItems);
+  }
+
   function getShoppingCartItemsAmount() {
     return items.reduce(
       (previousValue, current) => current.quantity + previousValue,
@@ -73,6 +89,7 @@ export function ShoppingCartContextProvider({
         handleAddItem,
         getShoppingCartItemsAmount,
         increaseItemQuantity,
+        decreaseItemQuantity,
       }}>
       {children}
     </ShoppingCartContext.Provider>

@@ -19,7 +19,8 @@ import {
 const deliveryFee = 3.5;
 
 export function ItemsReview() {
-  const { items, increaseItemQuantity } = useShoppingCartContext();
+  const { items, increaseItemQuantity, decreaseItemQuantity } =
+    useShoppingCartContext();
 
   const totalItemsPrice = items.reduce(
     (previousItems, currentItem) =>
@@ -31,6 +32,10 @@ export function ItemsReview() {
 
   function handleIncreaseItemQuantity(handledItem: ShoppingCartItem) {
     increaseItemQuantity(handledItem);
+  }
+
+  function handleDecreaseItemQuantity(handledItem: ShoppingCartItem) {
+    decreaseItemQuantity(handledItem);
   }
 
   return (
@@ -55,11 +60,13 @@ export function ItemsReview() {
                 </ItemTexts>
                 <ItemContentActions>
                   <Counter
+                    itemQuantity={item.quantity}
                     handleIncreaseQuantity={() =>
                       handleIncreaseItemQuantity(item)
                     }
-                    handleDecreaseQuantity={() => {}}
-                    itemQuantity={item.quantity}
+                    handleDecreaseQuantity={() =>
+                      handleDecreaseItemQuantity(item)
+                    }
                   />
                   <RemoveItemButton handleOnClick={() => {}} />
                 </ItemContentActions>
