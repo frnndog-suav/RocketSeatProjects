@@ -18,8 +18,29 @@ export function ShoppingCartContextProvider({
 }: ShoppingCartContextProviderProps) {
   const [items, setItems] = useState<ShoppingCartItem[]>([]);
 
-  function handleAddItem(item: ShoppingCartItem) {
-    setItems((currentItems) => [...currentItems, item]);
+  function handleAddItem(newItem: ShoppingCartItem) {
+    if (items.length === 0) {
+      setItems([newItem]);
+      return;
+    }
+
+    if (items.some((item) => item.coffee.id === newItem.coffee.id)) {
+      const updatedList = items.map((item) => {
+        if (item.coffee.id === newItem.coffee.id) {
+          return {
+            ...item,
+            quantity: item.quantity + newItem.quantity,
+          };
+        }
+
+        return item;
+      });
+
+      setItems(updatedList);
+      return;
+    }
+
+    setItems((currentList) => [...currentList, newItem]);
   }
 
   function getShoppingCartItemsAmount() {

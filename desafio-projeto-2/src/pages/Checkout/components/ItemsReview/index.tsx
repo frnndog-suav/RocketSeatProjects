@@ -1,9 +1,8 @@
-import { useFormContext } from "react-hook-form";
-import { CheckoutFormData } from "../..";
 import Cafe from "../../../../assets/coffee/americano.svg";
 import { Button } from "../../../../components/Button";
 import { Counter } from "../../../../components/Counter";
 import { RemoveItemButton } from "../../../../components/RemoveItemButton";
+import { useShoppingCartContext } from "../../../../contexts";
 import {
   Divider,
   Item,
@@ -18,43 +17,33 @@ import {
 } from "./styles";
 
 export function ItemsReview() {
-  const {
-    handleSubmit,
-    formState: { errors },
-  } = useFormContext<CheckoutFormData>();
-
-  function handleOrderConfirmation(data: CheckoutFormData) {
-    console.log("errors", errors);
-    console.log(data);
-  }
-
-  function handleButtonClick() {
-    handleSubmit(handleOrderConfirmation);
-  }
+  const { items } = useShoppingCartContext();
 
   return (
     <ItemsReviewContainer>
       <Title>Cafés selecionados</Title>
       <ItemsContainer>
-        <Divider>
-          <Item>
-            <img src={Cafe} alt="Café americano" />
-            <ItemContent>
-              <ItemTexts>
-                <p>Expresso Americano</p>
-                <span>R$ 9,90</span>
-              </ItemTexts>
-              <ItemContentActions>
-                <Counter
-                  handleIncreaseQuantity={() => {}}
-                  handleDecreaseQuantity={() => {}}
-                  itemQuantity={0}
-                />
-                <RemoveItemButton handleOnClick={() => {}} />
-              </ItemContentActions>
-            </ItemContent>
-          </Item>
-        </Divider>
+        {items.map((item) => (
+          <Divider key={item.coffee.id}>
+            <Item>
+              <img src={Cafe} alt="Café americano" />
+              <ItemContent>
+                <ItemTexts>
+                  <p>Expresso Americano</p>
+                  <span>R$ 9,90</span>
+                </ItemTexts>
+                <ItemContentActions>
+                  <Counter
+                    handleIncreaseQuantity={() => {}}
+                    handleDecreaseQuantity={() => {}}
+                    itemQuantity={0}
+                  />
+                  <RemoveItemButton handleOnClick={() => {}} />
+                </ItemContentActions>
+              </ItemContent>
+            </Item>
+          </Divider>
+        ))}
         <ItemsTotalsContainer>
           <ItemsTotalsContainerRow>
             <p>Total de itens</p>
@@ -68,7 +57,7 @@ export function ItemsReview() {
             <span>Total</span>
             <span>R$ 33,20</span>
           </ItemsTotalsContainerRow>
-          <Button handleOnClick={handleButtonClick} />
+          <Button />
         </ItemsTotalsContainer>
       </ItemsContainer>
     </ItemsReviewContainer>

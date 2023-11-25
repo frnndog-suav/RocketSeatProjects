@@ -17,7 +17,10 @@ export const Counter: FC<CounterProps> = ({
 
   return (
     <CounterContainer>
-      <button onClick={handleDecreaseQuantity} disabled={disabledButton}>
+      <button
+        onClick={handleDecreaseQuantity}
+        disabled={disabledButton}
+        type="button">
         <Minus size={20} />
       </button>
       <input
@@ -27,7 +30,7 @@ export const Counter: FC<CounterProps> = ({
         readOnly
         min={0}
       />
-      <button onClick={handleIncreaseQuantity}>
+      <button onClick={handleIncreaseQuantity} type="button">
         <Plus size={20} />
       </button>
     </CounterContainer>

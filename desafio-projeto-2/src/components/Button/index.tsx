@@ -1,12 +1,5 @@
-import { FC } from "react";
 import { ButtonContainer } from "./styles";
 
-interface ButtonProps {
-  handleOnClick: () => void;
+export function Button() {
+  return <ButtonContainer type="submit">{"CONFIRMAR PEDIDO"}</ButtonContainer>;
 }
-
-export const Button: FC<ButtonProps> = ({ handleOnClick }) => (
-  <ButtonContainer onClick={handleOnClick} type="submit">
-    {"CONFIRMAR PEDIDO"}
-  </ButtonContainer>
-);

@@ -26,9 +26,11 @@ export function CheckoutForm() {
   const [isDebitSelected, setIsDebitSelected] = useState(false);
   const [isMoneySelected, setIsMoneySelected] = useState(false);
 
-  const { register } = useFormContext();
+  const { register, setValue } = useFormContext();
 
   function selectOption(paymentMethod: PaymentMethod) {
+    setValue("isPaymentMethodSelected", true);
+
     switch (paymentMethod) {
       case PaymentMethod.Credit:
         setIsCreditSelected(true);
