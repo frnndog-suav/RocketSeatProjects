@@ -12,20 +12,14 @@ export const Title = styled.span`
 export const CheckoutFormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 50%;
   gap: 0.9375rem;
+  width: 100%;
 `;
 
 export const FormContent = styled.div`
   padding: 2.5rem;
   background-color: ${(props) => props.theme["base-card"]};
   border-radius: 6px;
-`;
-
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 `;
 
 export const FormRow = styled.div`
@@ -92,11 +86,11 @@ export const CheckoutFormInput = styled.input`
   border: none;
   border-radius: 4px;
   padding: 0.75rem;
-  font-size: 0.875rem;  
+  font-size: 0.875rem;
   line-height: 130%;
   color: ${(props) => props.theme["base-label"]};
   outline: none;
-  border: 1px solid ${props => props.theme["base-button"]};
+  border: 1px solid ${(props) => props.theme["base-button"]};
   width: inherit;
 
   &:focus {

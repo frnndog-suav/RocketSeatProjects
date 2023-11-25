@@ -7,7 +7,6 @@ import {
 } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { CheckoutFormData } from "../..";
 import { PaymentMethodOption } from "../../../../components/PaymentMethodOption";
 import { PaymentMethod } from "../../../../constants/types";
 import {
@@ -17,7 +16,6 @@ import {
   CheckoutFormInput,
   CityInput,
   FirstLineMessage,
-  Form,
   FormContent,
   FormContentMessage,
   FormRow,
@@ -33,16 +31,7 @@ export function CheckoutForm() {
   const [isDebitSelected, setIsDebitSelected] = useState(false);
   const [isMoneySelected, setIsMoneySelected] = useState(false);
 
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useFormContext<CheckoutFormData>();
-
-  function handleOrderConfirmation(data: CheckoutFormData) {
-    console.log("errors", errors);
-    console.log(data);
-  }
+  const { register } = useFormContext();
 
   function selectOption(paymentMethod: PaymentMethod) {
     switch (paymentMethod) {
@@ -77,47 +66,42 @@ export function CheckoutForm() {
             </SecondLineMessage>
           </div>
         </FormContentMessage>
-        <Form onSubmit={handleSubmit(handleOrderConfirmation)}>
-          <PostalCodeInput>
+        <PostalCodeInput>
+          <CheckoutFormInput placeholder="CEP" {...register("postalCode")} />
+        </PostalCodeInput>
+        <AddressInput>
+          <CheckoutFormInput placeholder="Rua" {...register("address")} />
+        </AddressInput>
+
+        <FormRow>
+          <div>
             <CheckoutFormInput
-              placeholder="CEP"
-              {...register("postalCode", { valueAsNumber: true })}
+              placeholder="Número"
+              {...register("addressNumber", { valueAsNumber: true })}
             />
-          </PostalCodeInput>
-          <AddressInput>
-            <CheckoutFormInput placeholder="Rua" {...register("address")} />
-          </AddressInput>
+          </div>
+          <AddressAdditionalInfoInput>
+            <CheckoutFormInput
+              placeholder="Complemento"
+              {...register("addressAdditionalInfo")}
+            />
+          </AddressAdditionalInfoInput>
+        </FormRow>
 
-          <FormRow>
-            <div>
-              <CheckoutFormInput
-                placeholder="Número"
-                {...register("addressNumber", { valueAsNumber: true })}
-              />
-            </div>
-            <AddressAdditionalInfoInput>
-              <CheckoutFormInput
-                placeholder="Complemento"
-                {...register("addressAdditionalInfo")}
-              />
-            </AddressAdditionalInfoInput>
-          </FormRow>
-
-          <FormRow>
-            <div>
-              <CheckoutFormInput
-                placeholder="Bairro"
-                {...register("neighborhood")}
-              />
-            </div>
-            <CityInput>
-              <CheckoutFormInput placeholder="Cidade" {...register("city")} />
-            </CityInput>
-            <UFInput>
-              <CheckoutFormInput placeholder="UF" {...register("uf")} />
-            </UFInput>
-          </FormRow>
-        </Form>
+        <FormRow>
+          <div>
+            <CheckoutFormInput
+              placeholder="Bairro"
+              {...register("neighborhood")}
+            />
+          </div>
+          <CityInput>
+            <CheckoutFormInput placeholder="Cidade" {...register("city")} />
+          </CityInput>
+          <UFInput>
+            <CheckoutFormInput placeholder="UF" {...register("uf")} />
+          </UFInput>
+        </FormRow>
       </FormContent>
 
       <FormContent>

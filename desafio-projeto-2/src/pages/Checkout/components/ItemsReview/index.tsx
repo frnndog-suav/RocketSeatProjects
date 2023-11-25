@@ -1,3 +1,5 @@
+import { useFormContext } from "react-hook-form";
+import { CheckoutFormData } from "../..";
 import Cafe from "../../../../assets/coffee/americano.svg";
 import { Button } from "../../../../components/Button";
 import { Counter } from "../../../../components/Counter";
@@ -16,6 +18,20 @@ import {
 } from "./styles";
 
 export function ItemsReview() {
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = useFormContext<CheckoutFormData>();
+
+  function handleOrderConfirmation(data: CheckoutFormData) {
+    console.log("errors", errors);
+    console.log(data);
+  }
+
+  function handleButtonClick() {
+    handleSubmit(handleOrderConfirmation);
+  }
+
   return (
     <ItemsReviewContainer>
       <Title>Cafés selecionados</Title>
@@ -52,7 +68,7 @@ export function ItemsReview() {
             <span>Total</span>
             <span>R$ 33,20</span>
           </ItemsTotalsContainerRow>
-          <Button handleOnClick={() => {}} />
+          <Button handleOnClick={handleButtonClick} />
         </ItemsTotalsContainer>
       </ItemsContainer>
     </ItemsReviewContainer>

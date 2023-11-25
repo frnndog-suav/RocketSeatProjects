@@ -6,7 +6,7 @@ interface ButtonProps {
 }
 
 export const Button: FC<ButtonProps> = ({ handleOnClick }) => (
-  <ButtonContainer onClick={handleOnClick}>
+  <ButtonContainer onClick={handleOnClick} type="submit">
     {"CONFIRMAR PEDIDO"}
   </ButtonContainer>
 );

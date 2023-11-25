@@ -2,15 +2,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import * as zod from "zod";
 import { CheckoutForm } from "./components/CheckoutForm";
+
 import { ItemsReview } from "./components/ItemsReview";
-import { CheckoutContainer, CheckoutContent } from "./style";
+import { CheckoutContainer, CheckoutContent, Form } from "./style";
+
+const cepRegex = /^\d{5}-\d{3}$/;
 
 const checkoutFormSchema = zod.object({
   postalCode: zod
-    .number()
-    .nonnegative()
-    .min(8, "CEP inválido")
-    .max(8, "CEP inválido"),
+    .string()
+    .refine((value) => cepRegex.test(value), "CEP é inválido."),
   address: zod.string(),
   addressNumber: zod.number().nonnegative(),
   addressAdditionalInfo: zod.string().optional(),
@@ -30,18 +31,31 @@ export const Checkout = () => {
       addressNumber: 0,
       city: "",
       neighborhood: "",
-      postalCode: 0,
+      postalCode: "",
       uf: "",
     },
   });
 
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = checkoutForm;
+
+  function handleOrderConfirmation(data: CheckoutFormData) {
+    console.log(data);
+  }
+
+  console.log("errors", errors);
+
   return (
     <CheckoutContainer>
       <CheckoutContent>
-        <FormProvider {...checkoutForm}>
-          <CheckoutForm />
-          <ItemsReview />
-        </FormProvider>
+        <Form onSubmit={handleSubmit(handleOrderConfirmation)}>
+          <FormProvider {...checkoutForm}>
+            <CheckoutForm />
+            <ItemsReview />
+          </FormProvider>
+        </Form>
       </CheckoutContent>
     </CheckoutContainer>
   );
