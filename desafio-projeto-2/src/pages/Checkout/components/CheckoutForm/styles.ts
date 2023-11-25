@@ -20,6 +20,9 @@ export const FormContent = styled.div`
   padding: 2.5rem;
   background-color: ${(props) => props.theme["base-card"]};
   border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
 
 export const FormRow = styled.div`
@@ -53,35 +56,17 @@ export const SecondLineMessage = styled(MessageLine)`
   font-size: 0.875rem;
 `;
 
-export const PostalCodeInput = styled.div`
-  width: 65%;
-`;
-
-export const AddressInput = styled.div`
-  width: 100%;
-`;
-
-export const AddressAdditionalInfoInput = styled.div`
-  width: 100%;
-`;
-
-export const CityInput = styled.div`
-  display: flex;
-  width: 350%;
-`;
-
-export const UFInput = styled.div`
-  display: flex;
-  width: 100%;
-`;
-
 export const PaymentMethodOptionSelection = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
 `;
 
-export const CheckoutFormInput = styled.input`
+interface CheckoutFormInputProps {
+  width: string;
+}
+
+export const CheckoutFormInput = styled.input<CheckoutFormInputProps>`
   background-color: ${(props) => props.theme["base-input"]};
   border: none;
   border-radius: 4px;
@@ -91,7 +76,7 @@ export const CheckoutFormInput = styled.input`
   color: ${(props) => props.theme["base-label"]};
   outline: none;
   border: 1px solid ${(props) => props.theme["base-button"]};
-  width: inherit;
+  width: ${(props) => props.width};
 
   &:focus {
     border: 1px solid ${(props) => props.theme["yellow-dark"]};

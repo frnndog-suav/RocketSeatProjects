@@ -10,20 +10,15 @@ import { useFormContext } from "react-hook-form";
 import { PaymentMethodOption } from "../../../../components/PaymentMethodOption";
 import { PaymentMethod } from "../../../../constants/types";
 import {
-  AddressAdditionalInfoInput,
-  AddressInput,
   CheckoutFormContainer,
   CheckoutFormInput,
-  CityInput,
   FirstLineMessage,
   FormContent,
   FormContentMessage,
   FormRow,
   PaymentMethodOptionSelection,
-  PostalCodeInput,
   SecondLineMessage,
   Title,
-  UFInput,
 } from "./styles";
 
 export function CheckoutForm() {
@@ -66,41 +61,49 @@ export function CheckoutForm() {
             </SecondLineMessage>
           </div>
         </FormContentMessage>
-        <PostalCodeInput>
-          <CheckoutFormInput placeholder="CEP" {...register("postalCode")} />
-        </PostalCodeInput>
-        <AddressInput>
-          <CheckoutFormInput placeholder="Rua" {...register("address")} />
-        </AddressInput>
 
         <FormRow>
-          <div>
-            <CheckoutFormInput
-              placeholder="Número"
-              {...register("addressNumber", { valueAsNumber: true })}
-            />
-          </div>
-          <AddressAdditionalInfoInput>
-            <CheckoutFormInput
-              placeholder="Complemento"
-              {...register("addressAdditionalInfo")}
-            />
-          </AddressAdditionalInfoInput>
+          <CheckoutFormInput
+            width="30%"
+            placeholder="CEP"
+            {...register("postalCode")}
+          />
+        </FormRow>
+        <FormRow>
+          <CheckoutFormInput
+            width="100%"
+            placeholder="Rua"
+            {...register("address")}
+          />
         </FormRow>
 
         <FormRow>
-          <div>
-            <CheckoutFormInput
-              placeholder="Bairro"
-              {...register("neighborhood")}
-            />
-          </div>
-          <CityInput>
-            <CheckoutFormInput placeholder="Cidade" {...register("city")} />
-          </CityInput>
-          <UFInput>
-            <CheckoutFormInput placeholder="UF" {...register("uf")} />
-          </UFInput>
+          <CheckoutFormInput
+            width="30%"
+            placeholder="Número"
+            {...register("addressNumber", { valueAsNumber: true })}
+          />
+
+          <CheckoutFormInput
+            width="70%"
+            placeholder="Complemento"
+            {...register("addressAdditionalInfo")}
+          />
+        </FormRow>
+
+        <FormRow>
+          <CheckoutFormInput
+            width="30%"
+            placeholder="Bairro"
+            {...register("neighborhood")}
+          />
+
+          <CheckoutFormInput
+            width="57%"
+            placeholder="Cidade"
+            {...register("city")}
+          />
+          <CheckoutFormInput width="10%" placeholder="UF" {...register("uf")} />
         </FormRow>
       </FormContent>
 
