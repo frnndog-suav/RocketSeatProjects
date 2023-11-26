@@ -5,7 +5,7 @@ import {
   MapPin,
   Money,
 } from "@phosphor-icons/react";
-import { useState } from "react";
+import { useReducer } from "react";
 import { useFormContext } from "react-hook-form";
 import { PaymentMethodOption } from "../../../../components/PaymentMethodOption";
 import { PaymentMethod } from "../../../../constants/types";
@@ -21,31 +21,63 @@ import {
   Title,
 } from "./styles";
 
+interface PaymentMethodToggleState {
+  isDebitSelected: boolean;
+  isCreditSelected: boolean;
+  isMoneySelected: boolean;
+}
+
 export function CheckoutForm() {
-  const [isCreditSelected, setIsCreditSelected] = useState(false);
-  const [isDebitSelected, setIsDebitSelected] = useState(false);
-  const [isMoneySelected, setIsMoneySelected] = useState(false);
+  const [paymentMethodToggle, dispatch] = useReducer(
+    (_state: PaymentMethodToggleState, action: any) => {
+      return {
+        isCreditSelected: action.payload.isCreditSelected,
+        isDebitSelected: action.payload.isDebitSelected,
+        isMoneySelected: action.payload.isMoneySelected,
+      };
+    },
+    {
+      isCreditSelected: false,
+      isDebitSelected: false,
+      isMoneySelected: false,
+    } as PaymentMethodToggleState
+  );
 
   const { register, setValue } = useFormContext();
 
   function selectOption(paymentMethod: PaymentMethod) {
-    setValue("isPaymentMethodSelected", true);
+    setValue("paymentMethod", paymentMethod);
 
     switch (paymentMethod) {
       case PaymentMethod.Credit:
-        setIsCreditSelected(true);
-        setIsDebitSelected(false);
-        setIsMoneySelected(false);
+        dispatch({
+          type: "CREDIT_SELECTED",
+          payload: {
+            isCreditSelected: true,
+            isDebitSelected: false,
+            isMoneySelected: false,
+          },
+        });
         return;
       case PaymentMethod.Debit:
-        setIsCreditSelected(false);
-        setIsDebitSelected(true);
-        setIsMoneySelected(false);
+        dispatch({
+          type: "DEBIT_SELECTED",
+          payload: {
+            isCreditSelected: false,
+            isDebitSelected: true,
+            isMoneySelected: false,
+          },
+        });
         return;
       default:
-        setIsCreditSelected(false);
-        setIsDebitSelected(false);
-        setIsMoneySelected(true);
+        dispatch({
+          type: "MONEY_SELECTED",
+          payload: {
+            isCreditSelected: false,
+            isDebitSelected: false,
+            isMoneySelected: true,
+          },
+        });
         return;
     }
   }
@@ -126,19 +158,19 @@ export function CheckoutForm() {
           <PaymentMethodOption
             icon={CreditCard}
             paymentMethod={PaymentMethod.Credit}
-            isChecked={isCreditSelected}
+            isChecked={paymentMethodToggle.isCreditSelected}
             selectOption={selectOption}
           />
           <PaymentMethodOption
             icon={Bank}
             paymentMethod={PaymentMethod.Debit}
-            isChecked={isDebitSelected}
+            isChecked={paymentMethodToggle.isDebitSelected}
             selectOption={selectOption}
           />
           <PaymentMethodOption
             icon={Money}
             paymentMethod={PaymentMethod.Money}
-            isChecked={isMoneySelected}
+            isChecked={paymentMethodToggle.isMoneySelected}
             selectOption={selectOption}
           />
         </PaymentMethodOptionSelection>

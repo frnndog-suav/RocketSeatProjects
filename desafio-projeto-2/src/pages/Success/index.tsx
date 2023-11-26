@@ -50,7 +50,7 @@ export function SuccessPage() {
             </MoneyIcon>
             <div>
               <span>Pagamento na entrega</span>
-              <p>Teste</p>
+              <p>{data.paymentMethod}</p>
             </div>
           </AddressInfoDisplayContainer>
         </InfoDisplay>

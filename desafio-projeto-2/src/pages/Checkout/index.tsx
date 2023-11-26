@@ -7,6 +7,7 @@ import { Coffee } from "@phosphor-icons/react";
 import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { PaymentMethod } from "../../constants/types";
 import { useShoppingCartContext } from "../../contexts";
 import { ItemsReview } from "./components/ItemsReview";
 import {
@@ -29,11 +30,10 @@ const checkoutFormSchema = zod.object({
   neighborhood: zod.string().min(1, "Preencha o campo de bairro"),
   city: zod.string().min(1, "Preencha o campo de cidade"),
   uf: zod.string().min(2, "UF inválido").max(2, "UF inválido"),
-  isPaymentMethodSelected: zod.literal(true, {
-    errorMap: () => {
-      return { message: "Escolha uma forma de pagamento" };
-    },
-  }),
+  paymentMethod: zod
+    .nativeEnum(PaymentMethod)
+    .nullish()
+    .refine((value) => value !== undefined, "Escolha uma forma de pagamento"),
 });
 
 export type CheckoutFormData = zod.infer<typeof checkoutFormSchema>;
@@ -52,7 +52,7 @@ export const CheckoutPage = () => {
       neighborhood: "",
       postalCode: "",
       uf: "",
-      isPaymentMethodSelected: undefined,
+      paymentMethod: undefined,
     },
   });
 
