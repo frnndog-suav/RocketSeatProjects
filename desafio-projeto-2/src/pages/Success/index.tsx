@@ -23,8 +23,8 @@ export function SuccessPage() {
   return (
     <SuccessContainer>
       <ConfirmedDataContainer>
-        <span>Uhu! Pedido confirmado</span>
-        <p>Agora é só aguardar que logo o café chegará até você</p>
+        <span>{"Uhu! Pedido confirmado"}</span>
+        <p>{"Agora é só aguardar que logo o café chegará até você"}</p>
         <InfoDisplay>
           <AddressInfoDisplayContainer>
             <MapPinIcon>
@@ -40,8 +40,8 @@ export function SuccessPage() {
               <Timer size={16} weight="fill" />
             </TimeIcon>
             <div>
-              <span>Previsão de entrega</span>
-              <p>20 min - 30 min </p>
+              <span>{"Previsão de entrega"}</span>
+              <p>{"20 min - 30 min"}</p>
             </div>
           </AddressInfoDisplayContainer>
           <AddressInfoDisplayContainer>
@@ -49,7 +49,7 @@ export function SuccessPage() {
               <CurrencyDollar size={16} />
             </MoneyIcon>
             <div>
-              <span>Pagamento na entrega</span>
+              <span>{"Pagamento na entrega"}</span>
               <p>{data.paymentMethod}</p>
             </div>
           </AddressInfoDisplayContainer>

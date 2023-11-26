@@ -10,6 +10,15 @@ import { useFormContext } from "react-hook-form";
 import { PaymentMethodOption } from "../../../../components/PaymentMethodOption";
 import { PaymentMethod } from "../../../../constants/types";
 import {
+  selectCreditAction,
+  selectDebitAction,
+  selectMoneyAction,
+} from "../../../../reducer/paymentToggle/actions";
+import {
+  PaymentMethodToggleState,
+  paymentToggleReducer,
+} from "../../../../reducer/paymentToggle/reducer";
+import {
   CheckoutFormContainer,
   CheckoutFormInput,
   FirstLineMessage,
@@ -21,21 +30,10 @@ import {
   Title,
 } from "./styles";
 
-interface PaymentMethodToggleState {
-  isDebitSelected: boolean;
-  isCreditSelected: boolean;
-  isMoneySelected: boolean;
-}
-
 export function CheckoutForm() {
   const [paymentMethodToggle, dispatch] = useReducer(
-    (_state: PaymentMethodToggleState, action: any) => {
-      return {
-        isCreditSelected: action.payload.isCreditSelected,
-        isDebitSelected: action.payload.isDebitSelected,
-        isMoneySelected: action.payload.isMoneySelected,
-      };
-    },
+    (state: PaymentMethodToggleState, action: any) =>
+      paymentToggleReducer(state, action),
     {
       isCreditSelected: false,
       isDebitSelected: false,
@@ -50,34 +48,13 @@ export function CheckoutForm() {
 
     switch (paymentMethod) {
       case PaymentMethod.Credit:
-        dispatch({
-          type: "CREDIT_SELECTED",
-          payload: {
-            isCreditSelected: true,
-            isDebitSelected: false,
-            isMoneySelected: false,
-          },
-        });
+        dispatch(selectCreditAction());
         return;
       case PaymentMethod.Debit:
-        dispatch({
-          type: "DEBIT_SELECTED",
-          payload: {
-            isCreditSelected: false,
-            isDebitSelected: true,
-            isMoneySelected: false,
-          },
-        });
+        dispatch(selectDebitAction());
         return;
       default:
-        dispatch({
-          type: "MONEY_SELECTED",
-          payload: {
-            isCreditSelected: false,
-            isDebitSelected: false,
-            isMoneySelected: true,
-          },
-        });
+        dispatch(selectMoneyAction());
         return;
     }
   }
