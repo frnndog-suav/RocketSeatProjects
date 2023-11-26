@@ -1,10 +1,11 @@
-import { CurrencyDollar, MapPin, Timer } from "@phosphor-icons/react";
+import { Coffee, CurrencyDollar, MapPin, Timer } from "@phosphor-icons/react";
 import { useLocation } from "react-router-dom";
 import IllustrationImg from "../../assets/Illustration.svg";
 import { CheckoutFormData } from "../Checkout";
 import {
   AddressInfoDisplayContainer,
   ConfirmedDataContainer,
+  EmptyOrderContainer,
   InfoDisplay,
   MapPinIcon,
   MoneyIcon,
@@ -14,6 +15,21 @@ import {
 
 export function SuccessPage() {
   const { state } = useLocation();
+
+  if (!state) {
+    return (
+      <SuccessContainer>
+        <EmptyOrderContainer>
+          <Coffee size={"10rem"} />
+          <p>
+            {"Faça suas compras clicando "}
+            <a href="/">{"aqui."}</a>
+          </p>
+        </EmptyOrderContainer>
+      </SuccessContainer>
+    );
+  }
+
   const { formData } = state;
   const data = formData as CheckoutFormData;
 

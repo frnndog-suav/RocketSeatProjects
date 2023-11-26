@@ -84,6 +84,10 @@ export const CheckoutPage = () => {
           <EmptyShoppingCartContainer>
             <Coffee size={"10rem"} />
             <p>{"Você não possui items no seu carrinho ;)"}</p>
+            <p>
+              {"Escolha seu produtos clicando "}
+              <a href="/">{"aqui."}</a>
+            </p>
           </EmptyShoppingCartContainer>
         ) : (
           <Form onSubmit={handleSubmit(handleOrderConfirmation)}>

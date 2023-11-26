@@ -29,6 +29,20 @@ export const SuccessContainer = styled.main`
   }
 `;
 
+export const EmptyOrderContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: ${(props) => props.theme["base-label"]};
+  font-size: 1rem !important;
+  margin-top: 1.9rem;
+
+  & p {
+    color: ${(props) => props.theme["base-label"]};
+    font-size: 1rem;
+  }
+`;
+
 export const ConfirmedDataContainer = styled.div`
   display: flex;
   flex-direction: column;
