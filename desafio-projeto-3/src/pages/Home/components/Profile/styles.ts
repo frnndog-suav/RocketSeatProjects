@@ -4,13 +4,12 @@ export const ProfileContainer = styled.div`
   display: flex;
   background-color: ${(props) => props.theme["base-profile"]};
   border-radius: 10px;
-  width: fit-content;
   padding-top: 2rem;
   padding-bottom: 2rem;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
   gap: 2rem;
-  margin: -5rem auto;
+  margin-top: -5rem;
 
   img {
     width: 9.25rem;
@@ -75,7 +74,6 @@ export const Name = styled.span`
 export const Description = styled.p`
   font-size: 1rem;
   line-height: 160%;
-  width: 38.25rem;
   margin-top: 0.5rem;
   color: ${(props) => props.theme["base-text"]};
 `;

@@ -9,6 +9,7 @@ export const InputContainer = styled.input`
   padding-right: 1.3rem;
   color: ${(props) => props.theme["base-label"]};
   border-radius: 6px;
+  width: 100%;
 
   &::placeholder {
     color: ${(props) => props.theme["base-label"]};
