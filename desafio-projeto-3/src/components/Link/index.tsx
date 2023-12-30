@@ -7,9 +7,9 @@ type LinkProps = {
 
 export function Link({ label }: LinkProps) {
   return (
-    <LinkContainer>
+    <LinkContainer href="#">
       <div>
-        <a>{label}</a>
+        <span>{label}</span>
         <img src={ArrowUpRightFromSquareImg} />
       </div>
     </LinkContainer>
