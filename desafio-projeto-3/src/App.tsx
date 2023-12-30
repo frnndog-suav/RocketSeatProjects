@@ -1,13 +1,13 @@
 import { ThemeProvider } from "styled-components";
-import { defaultTheme } from "./styles/themes/default";
+import { Input } from "./components/Input";
 import { GlobalStyle } from "./styles/global";
-import { Link } from "./components/Link";
+import { defaultTheme } from "./styles/themes/default";
 
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
-      <Link label="LABEL" />
+      <Input />
     </ThemeProvider>
   );
 }
