@@ -21,18 +21,20 @@ export const ProfileContainer = styled.div`
 export const ProfileInfoBox = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+`;
 
-  div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+export const TopContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const GithubInfosContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 1.5rem;
+  /* margin-top: 1.5rem; */
   justify-content: start !important;
 
   div {

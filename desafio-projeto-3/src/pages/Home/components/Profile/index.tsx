@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import BuildingIcon from "../../../../assets/building-solid.svg";
 import GithubIcon from "../../../../assets/github.svg";
 import ProfileImg from "../../../../assets/profile-pic-test.jpg";
 import FollowersIcon from "../../../../assets/user-group-solid.svg";
 import { Link } from "../../../../components/Link";
+import { GithubContext } from "../../../../context/GithubContext";
 import {
   BuildingImage,
   Description,
@@ -12,34 +14,35 @@ import {
   Name,
   ProfileContainer,
   ProfileInfoBox,
+  TopContainer,
 } from "./styles";
 
 export function Profile() {
+  const { user } = useContext(GithubContext);
+
   return (
     <ProfileContainer>
       <img src={ProfileImg} />
       <ProfileInfoBox>
         <div>
-          <Name>Smitty Werbenjägermanjensen</Name>
-          <Link label="GITHUB" />
+          <TopContainer>
+            <Name>{user?.name}</Name>
+            <Link label="GITHUB" />
+          </TopContainer>
+          <Description>{user?.bio}</Description>
         </div>
-        <Description>
-          Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-          viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat
-          pulvinar vel mass.
-        </Description>
         <GithubInfosContainer>
           <div>
             <GithubImage src={GithubIcon} />
-            <span>cameronwll</span>
+            <span>{user?.login}</span>
           </div>
           <div>
             <BuildingImage src={BuildingIcon} />
-            <span>Rocketseat</span>
+            <span>{user?.location}</span>
           </div>
           <div>
             <FollowersImage src={FollowersIcon} />
-            <span>32 seguidores</span>
+            <span>{`${user?.followers} seguidores`}</span>
           </div>
         </GithubInfosContainer>
       </ProfileInfoBox>
