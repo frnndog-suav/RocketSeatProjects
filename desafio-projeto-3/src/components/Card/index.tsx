@@ -1,28 +1,36 @@
-import { CardContainer, Description, PublicationDate, Title } from "./styles";
 import { formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { useNavigate } from "react-router-dom";
+import { Issue } from "../../@types";
+import { paths } from "../../router/routes";
+import { CardContainer, Description, PublicationDate, Title } from "./styles";
 
 type CardProps = {
-  title: string;
-  description: string;
-  publicationDate: string;
+  issue: Issue;
 };
 
-export function Card({ title, description, publicationDate }: CardProps) {
+export function Card({ issue }: CardProps) {
+  const navigate = useNavigate();
+
   function formattedDescription() {
-    if (description.length > 255) {
-      return description.slice(0, 255).concat("...");
+    if (issue.body.length > 255) {
+      return issue.body.slice(0, 255).concat("...");
     }
 
-    return description;
+    return issue.body;
+  }
+
+  function handleIssueDetails() {
+    const url = paths.details.replace(":id", issue.id.toString());
+    navigate(url, { state: { id: issue.id } });
   }
 
   return (
-    <CardContainer>
+    <CardContainer onClick={handleIssueDetails}>
       <div>
-        <Title>{title}</Title>
+        <Title>{issue.title}</Title>
         <PublicationDate>
-          {formatDistanceToNow(new Date(publicationDate), {
+          {formatDistanceToNow(new Date(issue.created_at), {
             addSuffix: true,
             locale: ptBR,
           })}

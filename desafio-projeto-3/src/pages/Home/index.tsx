@@ -19,12 +19,7 @@ export function HomePage() {
       <SearchBar />
       <CardsListGrid>
         {issues.map((issue) => (
-          <Card
-            key={`issue-${issue.id}`}
-            title={issue.title}
-            description={issue.body}
-            publicationDate={issue.created_at}
-          />
+          <Card key={`issue-${issue.id}`} issue={issue} />
         ))}
       </CardsListGrid>
     </>
