@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import BuildingIcon from "../../../../assets/building-solid.svg";
 import GithubIcon from "../../../../assets/github.svg";
-import ProfileImg from "../../../../assets/profile-pic-test.jpg";
 import FollowersIcon from "../../../../assets/user-group-solid.svg";
 import { Link } from "../../../../components/Link";
 import { GithubContext } from "../../../../context/GithubContext";
@@ -22,7 +21,7 @@ export function Profile() {
 
   return (
     <ProfileContainer>
-      <img src={ProfileImg} />
+      <img src={user?.avatar_url} />
       <ProfileInfoBox>
         <div>
           <TopContainer>
