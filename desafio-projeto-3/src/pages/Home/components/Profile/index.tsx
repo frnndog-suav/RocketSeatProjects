@@ -1,15 +1,9 @@
 import { useContext } from "react";
-import BuildingIcon from "../../../../assets/building-solid.svg";
-import GithubIcon from "../../../../assets/github.svg";
-import FollowersIcon from "../../../../assets/user-group-solid.svg";
+import { GithubInfos } from "../../../../components/GithubInfos";
 import { Link } from "../../../../components/Link";
 import { GithubContext } from "../../../../context/GithubContext";
 import {
-  BuildingImage,
   Description,
-  FollowersImage,
-  GithubImage,
-  GithubInfosContainer,
   Name,
   ProfileContainer,
   ProfileInfoBox,
@@ -30,20 +24,7 @@ export function Profile() {
           </TopContainer>
           <Description>{user?.bio}</Description>
         </div>
-        <GithubInfosContainer>
-          <div>
-            <GithubImage src={GithubIcon} />
-            <span>{user?.login}</span>
-          </div>
-          <div>
-            <BuildingImage src={BuildingIcon} />
-            <span>{user?.company}</span>
-          </div>
-          <div>
-            <FollowersImage src={FollowersIcon} />
-            <span>{`${user?.followers} seguidores`}</span>
-          </div>
-        </GithubInfosContainer>
+        <GithubInfos />
       </ProfileInfoBox>
     </ProfileContainer>
   );
