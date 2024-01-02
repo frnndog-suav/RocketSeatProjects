@@ -1,17 +1,14 @@
-import { LinkContainer } from "./styles";
 import ArrowUpRightFromSquareImg from "../../assets/arrow-up-right-from-square-solid.svg";
-import { useContext } from "react";
-import { GithubContext } from "../../context/GithubContext";
+import { LinkContainer } from "./styles";
 
 type LinkProps = {
   label: string;
+  redirectionLink: string;
 };
 
-export function Link({ label }: LinkProps) {
-  const { user } = useContext(GithubContext);
-
+export function Link({ label, redirectionLink }: LinkProps) {
   return (
-    <LinkContainer href={user?.html_url}>
+    <LinkContainer href={redirectionLink}>
       <div>
         <span>{label}</span>
         <img src={ArrowUpRightFromSquareImg} />

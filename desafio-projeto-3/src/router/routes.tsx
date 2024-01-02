@@ -5,7 +5,7 @@ import { HomePage } from "../pages/Home";
 
 export const paths = {
   home: "/",
-  details: "/details/:id",
+  details: "/details/:number",
 };
 
 export const applicationRoutes = createBrowserRouter([

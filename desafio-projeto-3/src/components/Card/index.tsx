@@ -21,8 +21,8 @@ export function Card({ issue }: CardProps) {
   }
 
   function handleIssueDetails() {
-    const url = paths.details.replace(":id", issue.id.toString());
-    navigate(url, { state: { id: issue.id } });
+    const url = paths.details.replace(":number", issue.number.toString());
+    navigate(url, { state: { number: issue.number } });
   }
 
   return (

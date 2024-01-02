@@ -13,6 +13,8 @@ import {
 export function Profile() {
   const { user } = useContext(GithubContext);
 
+  const redirectionLink = user?.html_url ?? "";
+
   return (
     <ProfileContainer>
       <img src={user?.avatar_url} />
@@ -20,7 +22,7 @@ export function Profile() {
         <div>
           <TopContainer>
             <Name>{user?.name}</Name>
-            <Link label="GITHUB" />
+            <Link label="GITHUB" redirectionLink={redirectionLink} />
           </TopContainer>
           <Description>{user?.bio}</Description>
         </div>

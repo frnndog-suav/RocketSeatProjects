@@ -1,7 +1,9 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import LeftArrowImg from "../../../../assets/angle-left-solid.svg";
 import { GithubInfos } from "../../../../components/GithubInfos";
 import { Link } from "../../../../components/Link";
+import { GithubContext } from "../../../../context/GithubContext";
 import {
   ActionsContainer,
   DisplayCardContainer,
@@ -11,6 +13,9 @@ import {
 
 export function DisplayCard() {
   const navigate = useNavigate();
+  const { detailedIssue } = useContext(GithubContext);
+
+  const redirectionLink = detailedIssue?.html_url ?? "";
 
   function handleGoToPreviousPage() {
     navigate(-1);
@@ -25,9 +30,9 @@ export function DisplayCard() {
             <span>{"VOLTAR"}</span>
           </div>
         </GoBackLink>
-        <Link label="VER NO GITHUB" />
+        <Link label="VER NO GITHUB" redirectionLink={redirectionLink} />
       </ActionsContainer>
-      <Name>Titulo da issue</Name>
+      <Name>{detailedIssue?.title}</Name>
       <GithubInfos />
     </DisplayCardContainer>
   );
