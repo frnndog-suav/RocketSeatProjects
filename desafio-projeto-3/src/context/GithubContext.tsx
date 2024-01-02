@@ -1,6 +1,8 @@
 import { createContext, useCallback, useState } from "react";
 import { api } from "../services/api";
 
+const REPO_NAME = "RocketSeatProjects";
+
 type GithubUser = {
   avatar_url: string;
   bio: string;
@@ -39,6 +41,7 @@ type GithubUser = {
 type GithubContextType = {
   user?: GithubUser;
   getUser: () => Promise<void>;
+  getIssuesFromRepo: (query: string) => Promise<void>;
 };
 
 export const GithubContext = createContext({} as GithubContextType);
@@ -56,8 +59,22 @@ export function GithubProvider({ children }: GithubProviderProps) {
     setUser(result.data);
   }, []);
 
+  const getIssuesFromRepo = useCallback(
+    async (query: string) => {
+      const result = await api.get(
+        `/search/issues/repo:${user?.login}/${REPO_NAME}`,
+        {
+          params: { q: query },
+        }
+      );
+      console.log("result.data", result.data);
+      setUser(result.data);
+    },
+    [user?.login]
+  );
+
   return (
-    <GithubContext.Provider value={{ user, getUser }}>
+    <GithubContext.Provider value={{ user, getUser, getIssuesFromRepo }}>
       {children}
     </GithubContext.Provider>
   );
