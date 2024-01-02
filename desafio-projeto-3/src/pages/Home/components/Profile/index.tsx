@@ -37,7 +37,7 @@ export function Profile() {
           </div>
           <div>
             <BuildingImage src={BuildingIcon} />
-            <span>{user?.location}</span>
+            <span>{user?.company}</span>
           </div>
           <div>
             <FollowersImage src={FollowersIcon} />

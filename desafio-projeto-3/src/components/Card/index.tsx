@@ -1,4 +1,6 @@
 import { CardContainer, Description, PublicationDate, Title } from "./styles";
+import { formatDistanceToNow } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 type CardProps = {
   title: string;
@@ -7,13 +9,26 @@ type CardProps = {
 };
 
 export function Card({ title, description, publicationDate }: CardProps) {
+  function formattedDescription() {
+    if (description.length > 255) {
+      return description.slice(0, 255).concat("...");
+    }
+
+    return description;
+  }
+
   return (
     <CardContainer>
       <div>
         <Title>{title}</Title>
-        <PublicationDate>{publicationDate}</PublicationDate>
+        <PublicationDate>
+          {formatDistanceToNow(new Date(publicationDate), {
+            addSuffix: true,
+            locale: ptBR,
+          })}
+        </PublicationDate>
       </div>
-      <Description>{description}</Description>
+      <Description>{formattedDescription()}</Description>
     </CardContainer>
   );
 }

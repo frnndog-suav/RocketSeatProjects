@@ -7,7 +7,7 @@ import { SearchBar } from "./components/SearchBar";
 import { CardsListGrid, HomePageContainer, HomePageContent } from "./styles";
 
 export function HomePage() {
-  const { getUser } = useContext(GithubContext);
+  const { getUser, issues } = useContext(GithubContext);
 
   useEffect(() => {
     getUser();
@@ -21,16 +21,14 @@ export function HomePage() {
         <Profile />
         <SearchBar />
         <CardsListGrid>
-          <Card
-            title="teste 1"
-            description="asdasd"
-            publicationDate="Há 1 semana"
-          />
-          <Card
-            title="teste 2"
-            description="asdasd"
-            publicationDate="Há 2 dias"
-          />
+          {issues.map((issue) => (
+            <Card
+              key={`issue-${issue.id}`}
+              title={issue.title}
+              description={issue.body}
+              publicationDate={issue.created_at}
+            />
+          ))}
         </CardsListGrid>
       </HomePageContent>
     </HomePageContainer>

@@ -11,6 +11,7 @@ export const CardContainer = styled.div`
   div {
     display: flex;
     justify-content: space-between;
+    gap: 5rem;
   }
 
   &:hover {
@@ -32,6 +33,7 @@ export const PublicationDate = styled.span`
   font-size: 0.875rem;
   line-height: 240%;
   color: ${(props) => props.theme["base-span"]};
+  min-width: fit-content;
 `;
 
 export const Description = styled.p`

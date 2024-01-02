@@ -11,6 +11,7 @@ export const HomePageContent = styled.div`
   margin-top: -5rem;
   padding-left: 18rem;
   padding-right: 18rem;
+  padding-bottom: 22rem;
 `;
 
 export const CardsListGrid = styled.div`
