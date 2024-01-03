@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import LeftArrowImg from "../../../../assets/angle-left-solid.svg";
-import { GithubInfos } from "../../../../components/GithubInfos";
 import { Link } from "../../../../components/Link";
 import { GithubContext } from "../../../../context/GithubContext";
+import { IssuesDetailsCard } from "../IssuesDetailsCard";
 import {
   ActionsContainer,
   DisplayCardContainer,
@@ -33,7 +33,7 @@ export function DisplayCard() {
         <Link label="VER NO GITHUB" redirectionLink={redirectionLink} />
       </ActionsContainer>
       <Name>{detailedIssue?.title}</Name>
-      <GithubInfos />
+      <IssuesDetailsCard />
     </DisplayCardContainer>
   );
 }

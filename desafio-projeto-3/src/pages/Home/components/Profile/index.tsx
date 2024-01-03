@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { GithubInfos } from "../../../../components/GithubInfos";
+import { GithubInfos } from "../GithubInfos";
 import { Link } from "../../../../components/Link";
 import { GithubContext } from "../../../../context/GithubContext";
 import {

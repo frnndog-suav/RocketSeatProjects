@@ -4,11 +4,11 @@ import {
   GithubImage,
   GithubInfosContainer,
 } from "./styles";
-import BuildingIcon from "../../assets/building-solid.svg";
-import GithubIcon from "../../assets/github.svg";
-import FollowersIcon from "../../assets/user-group-solid.svg";
+import BuildingIcon from "../../../../assets/building-solid.svg";
+import GithubIcon from "../../../../assets/github.svg";
+import FollowersIcon from "../../../../assets/user-group-solid.svg";
 import { useContext } from "react";
-import { GithubContext } from "../../context/GithubContext";
+import { GithubContext } from "../../../../context/GithubContext";
 
 export function GithubInfos() {
   const { user } = useContext(GithubContext);
