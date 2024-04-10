@@ -1,0 +1,12 @@
+# VSCode configurations
+.vscode
+
+# Packages
+node_modules
+build
+
+# Database
+db/*.db
+
+# Configurations
+.env
