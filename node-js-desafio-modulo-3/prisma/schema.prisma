@@ -58,14 +58,15 @@ enum PetSupport {
 }
 
 model Organization {
-  id             String @id @default(uuid())
-  email          String @unique
-  password_hash  String
-  owner_name     String
-  postal_code    String
-  street_name    String
-  contact_number String
-  Pet            Pet[]
+  id                String @id @default(uuid())
+  email             String @unique
+  password_hash     String
+  owner_name        String
+  organization_name String @default("")
+  postal_code       String
+  street_name       String
+  contact_number    String
+  Pet               Pet[]
 
   @@map("organizations")
 }
@@ -77,10 +78,11 @@ model Pet {
   age                   PetAge
   size                  PetSize
   energy                PetEnergy
-  self_suport           PetSupport
+  self_support          PetSupport
   environment           PetEnvironment
-  image                 String
+  imageUrl              String
   adoption_requirements String[]
+  postal_code           String         @default("")
 
   organization    Organization @relation(fields: [organization_id], references: [id])
   organization_id String
