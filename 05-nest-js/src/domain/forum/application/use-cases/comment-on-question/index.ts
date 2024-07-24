@@ -4,6 +4,7 @@ import { UniqueEntityID } from '@/domain/forum/enterprise/entities/value-objects
 import { QuestionsRepository } from '../../repositories/questions'
 import { QuestionCommentsRepository } from '../../repositories/questions-comment'
 import { ResourceNotFoundError } from '../_errors/resource-not-found'
+import { Injectable } from '@nestjs/common'
 
 export type TCommentOnQuestionUseCaseRequest = {
   authorId: string
@@ -18,6 +19,7 @@ export type TCommentOnQuestionUseCaseResponse = Either<
   }
 >
 
+@Injectable()
 export class CommentOnQuestionUseCase {
   constructor(
     private questionsRepository: QuestionsRepository,
